@@ -1,14 +1,9 @@
 package com.DONALO.proyecto.errores;
 
-public class ErrorServicio extends Exception{
+public class ErrorServicio extends Exception {
 
-	public ErrorServicio (String msn){
-	super (msn);
+	public ErrorServicio(String msn) {
+		super(msn);
 	}
-	
-	
-	
-	
-	
-	
+
 }
