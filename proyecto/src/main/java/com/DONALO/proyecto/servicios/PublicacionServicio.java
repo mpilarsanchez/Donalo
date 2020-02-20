@@ -1,5 +1,6 @@
 package com.DONALO.proyecto.servicios;
 
+import java.util.Date;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +40,7 @@ public class PublicacionServicio {
 	
 		publicacion.setDescripcion(descripcion);
 		publicacion.setSeleccion(seleccion);
-		
+		publicacion.setAlta(new Date());
 		Foto foto = fotoServicio.guardar(archivo);
 		publicacion.setFoto(foto);
 		
@@ -100,7 +101,7 @@ public class PublicacionServicio {
 	        if(respuesta.isPresent()){
 	          Publicacion publicacion = respuesta.get();
 	          if (publicacion.getId_Usuario().getId().equals(id_Usuario)){
-	            
+	            publicacion.setBaja(new Date());
 	             publicacionRepositorio.save(publicacion);
 	          }
 	    }else{
@@ -113,14 +114,8 @@ public class PublicacionServicio {
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-}
-	
-	
 
+	  
+	  
+	  
+}
