@@ -1,0 +1,13 @@
+
+
+body{
+  background-color: gainsboro;
+}
+
+img.logo{
+	width: 60%;
+}
+
+ul.navbar-nav{
+	margin-left:auto;
+}
