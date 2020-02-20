@@ -20,12 +20,13 @@ public class PublicacionServicio {
 
 	@Autowired
 	private UsuarioRepositorio usuarioRepositorio;
+	
 	@Autowired
 	private FotoServicio fotoServicio;
+	
 	@Autowired
 	private PublicacionRepositorio publicacionRepositorio;
-	@Autowired
-	private Publicacion publicacion;
+	
 	
 	@Transactional
 	public void altaPublicacion (MultipartFile archivo,String id_Usuario,String descripcion, Seleccion seleccion) throws ErrorServicio {

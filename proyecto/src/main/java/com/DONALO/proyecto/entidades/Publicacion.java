@@ -13,10 +13,10 @@ import org.hibernate.annotations.GenericGenerator;
 
 import com.DONALO.proyecto.enumeraciones.Seleccion;
 
-import lombok.Getter;
-import lombok.Setter;
+
 //@Getter
 //@Setter
+
 @Entity 
 public class Publicacion {
 
