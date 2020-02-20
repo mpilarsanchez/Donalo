@@ -14,22 +14,22 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity
 public class Usuario {
 	 @Id
-	    @GeneratedValue(generator = "uuid")
-	    @GenericGenerator(name = "uuid", strategy = "uuid2")
-	    private String id; 
-	    private String nombre;
-	    private String apellido;
-	    private String mail; 
-	    private String clave; 
+	 @GeneratedValue(generator = "uuid")
+	 @GenericGenerator(name = "uuid", strategy = "uuid2")
+	 private String id; 
+	 private String nombre;
+	 private String apellido;
+	 private String mail; 
+	 private String clave; 
 	    
 	    
-	    @OneToOne
-	    private Foto foto;
+	 @OneToOne
+	 private Foto foto;
 	    
-	    //@Temporal(TemporalType.TIMESTAMP)
+	    @Temporal(TemporalType.TIMESTAMP)
 	    private Date alta;
 
-	   // @Temporal(TemporalType.TIMESTAMP)
+	    @Temporal(TemporalType.TIMESTAMP)
 	    private Date baja; 
 
 	    public Foto getFoto() {
@@ -139,5 +139,7 @@ public class Usuario {
 	        this.baja = baja;
 	    }
 
-		
+	    
+	    
+	    	   
 }
