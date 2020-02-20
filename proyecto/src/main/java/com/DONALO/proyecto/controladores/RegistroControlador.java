@@ -25,7 +25,7 @@ private UsuarioServicio usuarioServicio;
 @GetMapping("/formulario")
 public String formulario() {
 	
-	return "formulario.html";
+	return "registro.html";
 }
 
 @PostMapping("/registrar")
@@ -44,9 +44,11 @@ public String registrar(ModelMap modelo,@RequestParam String nombre, @RequestPar
         return "registro.html";
     }
     
-    modelo.put("titulo", "Bienvenido a Tinder de Mascotas.");
+    modelo.put("nombre", nombre);
+    modelo.put("apellido", apellido);
+    modelo.put("titulo", "Bienvenido a Donalo!!.");
     modelo.put("descripcion", "Tu usuario fue registrado de manera satisfactoria");
-    return "index.html";
+    return "home.html";
 }
 
 }
