@@ -11,10 +11,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="/css/home.css">
     
-
-    </head>
-  <!-- Just an image -->
-  <header>
+<header>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="/"><img class="logo" src="/img/logo.png"></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,8 +41,69 @@
     </ul>
   </div>
 </nav>
+    </head>
+  <!-- Just an image -->
+  
 </header>
 <body>
+ <section>
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="card hovercard text-center">
+            <div class="cardheader">
+        <div class="col-lg-12 order-lg-2">
+          <div class="avatar">
+            <img class="img-fluid rounded-circle" src="0.jpg" alt="imagen aca">
+          </div>
+        </div>
+     <div class="row ">   
+        <div class="card-text-center">
+          <div class="p-5">
+            <h2 class="card-text display-4" th:text="${nombre}" >Nombre </h2> 
+            <h2 class="display-4" th:text="${apellido}" >Apellido</h2>
+            <h2 class="display-4" th:text="${mail}" >Mail</h2>
+            <p ckass="card-text">Lorem, ipsum dolor sit amet 
+                consectetur adipisicing elit. Fugit 
+                pariatur ratione optio laboriosam enim 
+                similique neque nulla nesciunt quis libero ipsa non eaque 
+                voluptates tempora repudiandae aliquam doloribus, dicta ducimus!</p>
+          </div>
+      </div>
+    </div>
+</div>
+</div>
+</div>
+  </section>
+
+<section>
+ <div class="container">
+   
+    <div class="row align-items-center">
+        <div class="col-lg-12 text-right"><button type="button" class="btn btn-info btn-block">Publicar</button></div>
+    <div class="row">
+            <br></br>
+        </div>
+
+    </div>
+    <div class="row align-items-center">
+        <div class="col-lg-12 text-right"><a href="editar_perfil"><button type="button" class="btn btn-dark btn-block">Editar Perfil</button></a></div>
+    </div>
+
+
+
+
+
+
+    </div>
+
+
+
+ </div>
+
+
+
+</section>
+
 
 </body>
     <!-- Optional JavaScript -->
@@ -55,3 +113,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
   
 </html>
+
+
+
+
+<!-- th:text="${titulo}" -->
