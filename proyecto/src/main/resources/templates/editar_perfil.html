@@ -61,6 +61,12 @@
 	<form action="/editar_perfil/editar" method="POST" enctype="multipart/form-data">
 		<p th:if="${error != null}" th:text="${error}" style="color: red;"></p>
 
+		<label>Username</label> 
+		<input type="text" class="form-control" name="nombre" th:placeholder="${usernameviejo}" th:value="${username}" />  <br />
+			
+		
+		
+		
 		<label>Nombre</label> 
 		<input type="text" class="form-control" name="nombre" th:placeholder="${nombreviejo}" th:value="${nombre}" />  <br />
 			

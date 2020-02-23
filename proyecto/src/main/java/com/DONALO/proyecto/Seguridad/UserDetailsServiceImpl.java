@@ -1,4 +1,4 @@
-package Configuaraciondeseguridad;
+package com.DONALO.proyecto.Seguridad;
 
 import com.DONALO.proyecto.entidades.Roles;
 import com.DONALO.proyecto.entidades.Usuario;
@@ -33,6 +33,6 @@ public class UserDetailsServiceImpl implements UserDetailsService{
             grantedAuthorities.add(new SimpleGrantedAuthority(role.getName()));
         }
 
-        return new org.springframework.security.core.userdetails.User(user.getNombre(), user.getClave(), grantedAuthorities);
+        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getClave(), grantedAuthorities);
     }
 }

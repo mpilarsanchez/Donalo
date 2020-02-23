@@ -1,7 +1,7 @@
-package Configuaraciondeseguridad;
+package com.DONALO.proyecto;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -9,15 +9,19 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.UserDetailsService;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import com.DONALO.proyecto.Seguridad.UserDetailsServiceImpl;
+
+
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-    @Qualifier("userDetailsServiceImpl")
+   
     @Autowired
-    private UserDetailsService userDetailsService;
+    private UserDetailsServiceImpl userDetailsService;
 
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
@@ -26,17 +30,22 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
-            .authorizeRequests()
-                .antMatchers("/resources/**", "/registration").permitAll()
-                .anyRequest().authenticated()
-                .and()
-            .formLogin()
-                .loginPage("/login")
-                .permitAll()
-                .and()
-            .logout()
-                .permitAll();
+        
+        System.out.println("=======================================================");
+   		http.headers().frameOptions().sameOrigin().and()
+   			.authorizeRequests()
+   				.antMatchers("/css/*", "/js/*", "/login", "/registro")
+   				.permitAll()
+   			.and().formLogin()
+   				.loginPage("/login")
+   					.usernameParameter("username")
+   					.passwordParameter("clave")
+   					.defaultSuccessUrl("/")
+   					.permitAll()
+   				.and().logout()
+   					.logoutUrl("/logout")
+   					.logoutSuccessUrl("/login?logout")
+   					.permitAll().and().csrf().disable();
     }
 
     @Bean

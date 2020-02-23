@@ -23,8 +23,10 @@ public class Usuario {
 	 private String apellido;
 	 private String mail; 
 	 private String clave; 
-	 
+	 private String username;
 	
+	
+
 	@ManyToMany
 	    private Set<Roles> roles;
 	    
@@ -152,6 +154,15 @@ public class Usuario {
 			this.roles = roles;
 		}
     
-	    
+		public String getUsername() {
+			return username;
+		}
+
+		public void setUsername(String username) {
+			this.username = username;
+		}
+		
+		
+		
 	    	   
 }

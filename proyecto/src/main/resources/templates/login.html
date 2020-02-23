@@ -58,17 +58,17 @@
 				<div class="col-lg-6 order-lg-1">
 					<div class="p-5">
 						<h2 class="display-4">Logueate</h2>
-						<form action="/logincheck" method="POST">
+						<form th:action="@{/login}" method="POST">
 							<p th:if="${error != null}" th:text="${error}" style="color: red"></p>
 							<p th:if="${logout != null}" th:text="${logout}"
 								style="color: green"></p>
 
-							<label>E-Mail</label> <input type="email" class="form-control"
+							<label>Username</label> <input type="text" class="form-control"
 								name="username" /> <label>Clave</label> <input type="password"
-								class="form-control" name="password" /> <br />
-							<button type="submit" class="btn btn-primary">Ingresar</button>
+								class="form-control" name="clave" /> <br />
+						<button type="submit" class="btn btn-primary">Ingresar</button>
 						</form>
-					</div>
+						<a href="perfil">	<button class="btn btn-primary">Ir a perfil</button></a>
 				</div>
 				<div class="col-auto my-1">
 					<div class="form-check">

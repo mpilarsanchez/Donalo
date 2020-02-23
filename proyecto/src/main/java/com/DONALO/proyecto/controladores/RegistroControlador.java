@@ -29,9 +29,9 @@ public String formulario() {
 }
 
 @PostMapping("/registrar")
-public String registrar(ModelMap modelo,@RequestParam String nombre, @RequestParam String apellido, @RequestParam String mail, @RequestParam String clave1, @RequestParam String clave2,  MultipartFile archivo){
+public String registrar(ModelMap modelo,@RequestParam String nombre, @RequestParam String apellido, @RequestParam String mail, @RequestParam String clave1, @RequestParam String clave2,@RequestParam String username,  MultipartFile archivo){
     try {
-        usuarioServicio.altaUsuario(nombre, apellido, mail, clave1, clave2, archivo);
+        usuarioServicio.altaUsuario(nombre, apellido, mail, clave1, clave2, archivo, username);
     } catch (ErrorServicio ex) {
        
         modelo.put("error", ex.getMessage());
@@ -46,6 +46,7 @@ public String registrar(ModelMap modelo,@RequestParam String nombre, @RequestPar
     
     modelo.put("nombre", nombre);
     modelo.put("apellido", apellido);
+    modelo.put("username",username);
     modelo.put("titulo", "Bienvenido a Donalo!!.");
     modelo.put("descripcion", "Tu usuario fue registrado de manera satisfactoria");
     return "home.html";
