@@ -8,4 +8,6 @@ import com.DONALO.proyecto.entidades.Usuario;
 @Repository("usuarioRepositorio")
 public interface UsuarioRepositorio extends JpaRepository<Usuario, String> {
 
+	Usuario findByUsername(String username);
+	
 }

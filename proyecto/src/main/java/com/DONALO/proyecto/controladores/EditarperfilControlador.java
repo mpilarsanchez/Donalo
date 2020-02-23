@@ -27,17 +27,17 @@ public String cargar(ModelMap modelo, @AuthenticationPrincipal Usuario usuario) 
 	modelo.put("nombreviejo", usuario.getNombre());
 	modelo.put("apellidoviejo", usuario.getNombre());
 	modelo.put("mailviejo", usuario.getNombre());
-	
+	modelo.put("usernamevijo", usuario.getUsername());
 	return "editar_perfil.html";
 	
 }
 
 
 @PostMapping("/editar")
-public String editar(@AuthenticationPrincipal Usuario usuario, ModelMap modelo, @RequestParam String nombre, @RequestParam String apellido, @RequestParam String mail, @RequestParam String clave1, @RequestParam String clave2, MultipartFile archivo){
+public String editar(@AuthenticationPrincipal Usuario usuario, ModelMap modelo, @RequestParam String nombre, @RequestParam String apellido, @RequestParam String mail, @RequestParam String clave1, @RequestParam String clave2, MultipartFile archivo,  @RequestParam String username){
 	
 	   try {
-	        servicio.modificacionUsuario(archivo, usuario.getId() , nombre, apellido, mail, clave1, clave2);
+	        servicio.modificacionUsuario(archivo, usuario.getId() , nombre, apellido, mail, clave1, clave2, username);
 	    } catch (ErrorServicio ex) {
 	       
 	        modelo.put("error", ex.getMessage());
@@ -46,7 +46,7 @@ public String editar(@AuthenticationPrincipal Usuario usuario, ModelMap modelo, 
 	        modelo.put("mail", mail);
 	        modelo.put("clave1", clave1);
 	        modelo.put("clave2", clave2);
-	        
+	        modelo.put("username", username);
 	        return "registro.html";
 	    }
 	    

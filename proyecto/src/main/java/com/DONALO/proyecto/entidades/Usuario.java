@@ -1,10 +1,12 @@
 package com.DONALO.proyecto.entidades;
 
 import java.util.Date;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -21,7 +23,12 @@ public class Usuario {
 	 private String apellido;
 	 private String mail; 
 	 private String clave; 
-	    
+	 private String username;
+	
+	
+
+	@ManyToMany
+	    private Set<Roles> roles;
 	    
 	 @OneToOne
 	 private Foto foto;
@@ -139,7 +146,23 @@ public class Usuario {
 	        this.baja = baja;
 	    }
 
-	    
-	    
+	    public Set<Roles> getRoles() {
+			return roles;
+		}
+
+		public void setRoles(Set<Roles> roles) {
+			this.roles = roles;
+		}
+    
+		public String getUsername() {
+			return username;
+		}
+
+		public void setUsername(String username) {
+			this.username = username;
+		}
+		
+		
+		
 	    	   
 }
