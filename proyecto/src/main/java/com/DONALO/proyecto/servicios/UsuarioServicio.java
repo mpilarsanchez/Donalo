@@ -133,30 +133,53 @@ public class UsuarioServicio implements UserDetailsService{
 
 	
 	@Override
-	public UserDetails loadUserByUsername(String id) throws UsernameNotFoundException{
-		
-		Usuario usuario = usuarioRepositorio.getOne(id);
-		
-		if(usuario!=null) {
-		List <GrantedAuthority> permisos = new ArrayList<>();
-		
-		GrantedAuthority p1= new SimpleGrantedAuthority("ROLE_USUARIO_REGISTRADO");
-		permisos.add(p1);
-		
-		ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
-		HttpSession session=attr.getRequest().getSession(true);
-		session.setAttribute("usuariosession", usuario);
-		
-		
-		User user = new User (usuario.getMail(),usuario.getClave(),permisos);
-		
-		return user;
-	}else {
-		return null;
+    public UserDetails loadUserByUsername(String mail) throws UsernameNotFoundException {
+        Usuario usuario = usuarioRepositorio.buscarPorMail(mail);
+        if(usuario != null){
+            
+            List<GrantedAuthority> permisos = new ArrayList<>();
+            
+            GrantedAuthority p1 = new SimpleGrantedAuthority("ROLE_USUARIO_REGISTRADO");
+            permisos.add(p1);
+            
+            ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+            HttpSession session = attr.getRequest().getSession(true); 
+            session.setAttribute("usuariosession", usuario);
+
+            User user = new User(usuario.getMail(), usuario.getClave(), permisos);
+            return user;
+        } else {
+            return null;
+        }
 	}
+	}
+
 	
-}
-}
+//	@override
+//	public userdetails loaduserbyusername(string id) throws usernamenotfoundexception{
+//		
+//		usuario usuario = usuariorepositorio.getone(id);
+//		
+//		if(usuario!=null) {
+//		list <grantedauthority> permisos = new arraylist<>();
+//		
+//		grantedauthority p1= new simplegrantedauthority("role_usuario_registrado");
+//		permisos.add(p1);
+//		
+//		servletrequestattributes attr = (servletrequestattributes) requestcontextholder.currentrequestattributes();
+//		httpsession session=attr.getrequest().getsession(true);
+//		session.setattribute("usuariosession", usuario);
+//		
+//		
+//		user user = new user (usuario.getmail(),usuario.getclave(),permisos);
+//		
+//		return user;
+//	}else {
+//		return null;
+//	}
+//	
+//}
+
 
 
 

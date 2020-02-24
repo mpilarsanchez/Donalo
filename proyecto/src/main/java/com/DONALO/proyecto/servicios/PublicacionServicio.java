@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -30,15 +31,15 @@ public class PublicacionServicio {
 	
 	
 	@Transactional
-	public void altaPublicacion (MultipartFile archivo,String id_Usuario,String descripcion, Seleccion seleccion) throws ErrorServicio {
-	
+	public void altaPublicacion (String titulo, String descripcion,String id_usuario, MultipartFile archivo,Seleccion seleccion) throws ErrorServicio {
+		Usuario usuario = usuarioRepositorio.getOne(id_usuario);
+		validacion (titulo, descripcion,seleccion);
 		
-		Usuario usuario = usuarioRepositorio.findById(id_Usuario).get();
-		validacion (id_Usuario,seleccion);
 		Publicacion publicacion = new Publicacion();
 		
-	
+	    publicacion.setTitulo(titulo);
 		publicacion.setDescripcion(descripcion);
+		publicacion.setId_Usuario(usuario);
 		publicacion.setSeleccion(seleccion);
 		publicacion.setAlta(new Date());
 		Foto foto = fotoServicio.guardar(archivo);
@@ -50,10 +51,13 @@ public class PublicacionServicio {
 	
 	
 	@Transactional
-	public void validacion (String id_Usuario, Seleccion seleccion) throws ErrorServicio {
+	public void validacion (String  titulo, String descripcion, Seleccion seleccion) throws ErrorServicio {
 		
-		if(id_Usuario==null||id_Usuario.isEmpty()) {
-			throw new ErrorServicio("El usuario no puede ser nulo o estar vacío");
+		if(titulo==null||titulo.isEmpty()) {
+			throw new ErrorServicio("Debe consignar el titulo de su publicacion");
+		}
+		if(descripcion==null||descripcion.isEmpty()) {
+			throw new ErrorServicio("Describa brevemente su donacion o solicitud");
 		}
 		
 		if(seleccion == null) {
@@ -67,7 +71,8 @@ public class PublicacionServicio {
 	
 	@Transactional
 	public void modificacionPublicacion (MultipartFile archivo,String id_Usuario,String descripcion, Seleccion seleccion) throws ErrorServicio{
-		validacion (id_Usuario,seleccion);
+		
+		//validacion (id_Usuario,seleccion);
 		
 		Optional<Publicacion> respuesta = publicacionRepositorio.findById(id_Usuario);
 		
@@ -110,9 +115,8 @@ public class PublicacionServicio {
 
 	  
 	    }
-	
-	
-	
+
+
 	
 
 	  

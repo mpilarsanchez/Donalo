@@ -18,9 +18,6 @@ import org.hibernate.annotations.GenericGenerator;
 import com.DONALO.proyecto.enumeraciones.Seleccion;
 
 
-//@Getter
-//@Setter
-
 @Entity 
 public class Publicacion {
 
@@ -29,82 +26,93 @@ public class Publicacion {
     @GenericGenerator(name = "uuid", strategy = "uuid2")
 	private String id;
 	
+	private String titulo;
+	
+	private String descripcion;
+	
+	
 	 @OneToOne
 	 private Foto foto;
 	 
 	 @ManyToOne
 	 private Usuario id_Usuario;
-		
-
-	private String descripcion;
 	
+	  @Enumerated(EnumType.STRING)
+		private Seleccion seleccion;
+	  
 	 @Temporal(TemporalType.TIMESTAMP)
 	    private Date alta;
 
 	    @Temporal(TemporalType.TIMESTAMP)
-	    private Date baja; 
+	    private Date baja;
+
+		public String getId() {
+			return id;
+		}
+
+		public void setId(String id) {
+			this.id = id;
+		}
+
+		public String getTitulo() {
+			return titulo;
+		}
+
+		public void setTitulo(String titulo) {
+			this.titulo = titulo;
+		}
+
+		public String getDescripcion() {
+			return descripcion;
+		}
+
+		public void setDescripcion(String descripcion) {
+			this.descripcion = descripcion;
+		}
+
+		public Foto getFoto() {
+			return foto;
+		}
+
+		public void setFoto(Foto foto) {
+			this.foto = foto;
+		}
+
+		public Usuario getId_Usuario() {
+			return id_Usuario;
+		}
+
+		public void setId_Usuario(Usuario id_Usuario) {
+			this.id_Usuario = id_Usuario;
+		}
+
+		public Seleccion getSeleccion() {
+			return seleccion;
+		}
+
+		public void setSeleccion(Seleccion seleccion) {
+			this.seleccion = seleccion;
+		}
+
+		public Date getAlta() {
+			return alta;
+		}
+
+		public void setAlta(Date alta) {
+			this.alta = alta;
+		}
+
+		public Date getBaja() {
+			return baja;
+		}
+
+		public void setBaja(Date baja) {
+			this.baja = baja;
+		} 
 	
-    @Enumerated(EnumType.STRING)
-	private Seleccion seleccion;
+  
 
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	public Foto getFoto() {
-		return foto;
-	}
-
-	public void setFoto(Foto foto) {
-		this.foto = foto;
-	}
-
-	public Usuario getId_Usuario() {
-		return id_Usuario;
-	}
-
-	public void setId_Usuario(Usuario id_Usuario) {
-		this.id_Usuario = id_Usuario;
-	}
-
-	public String getDescripcion() {
-		return descripcion;
-	}
-
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
-
-	public Seleccion getSeleccion() {
-		return seleccion;
-	}
-
-	public void setSeleccion(Seleccion seleccion) {
-		this.seleccion = seleccion;
-	}
-
-	public Date getAlta() {
-		return alta;
-	}
-
-	public void setAlta(Date alta) {
-		this.alta = alta;
-	}
-
-	public Date getBaja() {
-		return baja;
-	}
-
-	public void setBaja(Date baja) {
-		this.baja = baja;
-	}
-    
-    
-    
+   
     
     
     

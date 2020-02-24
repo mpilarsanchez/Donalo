@@ -55,7 +55,15 @@
             
 	<form action="/publicacion/publicar" method="POST" enctype="multipart/form-data">
 		<p th:if="${error != null}" th:text="${error}" style="color: red;"></p>
+			<input type="hidden" name="id" th:value="${id}" />
+		   	<input type="hidden" name="id_usuario" th:value="${id_usuario}" />
+		   
+		    
 		
+		   <label>Titulo</label>
+		  <input type="text" class="form-control" name="titulo" />  <br />
+		
+		   
 		  <label>Descripcion</label> 	 
 			<textarea rows="" cols="" style="margin: 0px; height: 67px; width: 448px;"  name="descripcion" th:value="${descripcion}"></textarea><br />
 		

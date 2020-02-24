@@ -60,23 +60,21 @@
 						<h2 class="display-4">Logueate</h2>
 						<form action="/logincheck" method="POST">
 							<p th:if="${error != null}" th:text="${error}" style="color: red"></p>
-							<p th:if="${logout != null}" th:text="${logout}"
-								style="color: green"></p>
+							<p th:if="${logout != null}" th:text="${logout}" style="color: green"></p>
 
 							<label>E-Mail</label> <input type="email" class="form-control"
 								name="username" /> <label>Clave</label> <input type="password"
 								class="form-control" name="password" /> <br />
 							<button type="submit" class="btn btn-primary">Ingresar</button>
+							<div class="col-auto my-1">
+					          <div class="form-check">
+						         <input class="form-check-input" type="checkbox" id="autoSizingCheck2"> <label class="form-check-label" for="autoSizingCheck2"> Recuérdame </label>
+					</div>
+				</div>
 						</form>
 					</div>
 				</div>
-				<div class="col-auto my-1">
-					<div class="form-check">
-						<input class="form-check-input" type="checkbox"
-							id="autoSizingCheck2"> <label class="form-check-label"
-							for="autoSizingCheck2"> Recuérdame </label>
-					</div>
-				</div>
+				
 			</div>
 	</section>
 
