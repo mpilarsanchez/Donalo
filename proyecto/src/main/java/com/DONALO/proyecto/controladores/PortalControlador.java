@@ -1,22 +1,23 @@
 package com.DONALO.proyecto.controladores;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.DONALO.proyecto.entidades.Usuario;
-import com.DONALO.proyecto.repositorios.UsuarioRepositorio;
+import com.DONALO.proyecto.servicios.UsuarioServicio;
+
+
 
 
 
 @Controller
 public class PortalControlador {
 
-@Autowired
-private UsuarioRepositorio repositorio;
-	
+	 @Autowired
+	    private UsuarioServicio usuarioServicio;
 	
 	@GetMapping("/")
     public String home(){
@@ -51,4 +52,4 @@ private UsuarioRepositorio repositorio;
     
     	
     }
-}
+
