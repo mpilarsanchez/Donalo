@@ -14,7 +14,9 @@ import com.DONALO.proyecto.repositorios.UsuarioRepositorio;
 @Controller
 public class PortalControlador {
 
-
+@Autowired
+private UsuarioRepositorio repositorio;
+	
 	
 	@GetMapping("/")
     public String home(){
@@ -49,4 +51,4 @@ public class PortalControlador {
     
     	
     }
-
+}
