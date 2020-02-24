@@ -54,18 +54,18 @@
             <h2 class="display-4">Crear tu publicación!</h2>
             
 	<form action="/publicacion/publicar" method="POST" enctype="multipart/form-data">
-		<p th:if="${error != null}" th:text="${error}" style="color: red;"></p>
+		<!-- <p th:if="${error != null}" th:text="${error}" style="color: red;"></p>
 			<input type="hidden" name="id" th:value="${id}" />
-		   	<input type="hidden" name="id_usuario" th:value="${id_usuario}" />
+			 <h2 class="masthead-subheading mb-0" th:if="${session.usuariosession != null}" th:text="${session.usuariosession.nombre + ' ' + session.usuariosession.apellido}"></h2> 
+		   	<input type="hidden" th:if="${session.usuariosession != null}" name="id_usuario" th:value="${session.usuariosession.id" />-->
 		   
 		    
 		
 		   <label>Titulo</label>
-		  <input type="text" class="form-control" name="titulo" />  <br />
+		  <input type="text" class="form-control" name="titulo" th:value="${titulo}" />  <br />
 		
-		   
-		  <label>Descripcion</label> 	 
-			<textarea rows="" cols="" style="margin: 0px; height: 67px; width: 448px;"  name="descripcion" th:value="${descripcion}"></textarea><br />
+		   <label>Descripcion</label>	 
+			<textarea rows="" cols="" style="margin: 0px; height: 67px; width: 448px;"  name="descripcion" th:value="${descripcion}"></textarea><br/>
 		
 		  <label>Foto</label>
 		  <input type="file" class="form-control" name="archivo" />  <br />
@@ -73,17 +73,15 @@
 		<p>Selecciona si tu publicacion es:</p>
 			  <div>
 			    <input type="radio" id="contactChoice1"
-			     name="seleccion" value="true">
+			     name="DONAR" value="${seleccion}">
 			    <label for="contactChoice1">Para Donar</label>
 			
 			    <input type="radio" id="contactChoice2"
-			     name="seleccion" value="false">
+			     name="RECIBIR" value="${seleccion}">
 			    <label for="contactChoice2">Para Solicitar</label>
 			
 			  </div>
-		<!--   <label for="cbox1"><input type="checkbox" id="cbox1" value="${para_donar}"> Para Donar </label><br>
-
-          <label for="cbox2"><input type="checkbox" id="cbox2" value="${para_solicitar}"> Para Solicitar</label>  <br /> -->
+		
 		  
 		<button type="submit" class="btn btn-primary">Publicar</button>
 	</form> 

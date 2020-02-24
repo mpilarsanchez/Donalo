@@ -13,8 +13,9 @@ import org.springframework.web.multipart.MultipartFile;
 import com.DONALO.proyecto.entidades.Usuario;
 import com.DONALO.proyecto.errores.ErrorServicio;
 import com.DONALO.proyecto.servicios.UsuarioServicio;
-@RequestMapping("/editar_perfil")
+
 @Controller
+@RequestMapping("/editar_perfil")
 public class EditarperfilControlador {
 
 
@@ -28,7 +29,7 @@ public String cargar(ModelMap modelo, @AuthenticationPrincipal Usuario usuario) 
 	modelo.put("apellidoviejo", usuario.getNombre());
 	modelo.put("mailviejo", usuario.getNombre());
 	modelo.put("usernamevijo", usuario.getUsername());
-	return "editar_perfil.html";
+	return "perfil.html";
 	
 }
 

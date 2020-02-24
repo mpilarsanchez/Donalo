@@ -35,7 +35,7 @@ public class Publicacion {
 	 private Foto foto;
 	 
 	 @ManyToOne
-	 private Usuario id_Usuario;
+	 private Usuario usuario;
 	
 	  @Enumerated(EnumType.STRING)
 		private Seleccion seleccion;
@@ -78,12 +78,14 @@ public class Publicacion {
 			this.foto = foto;
 		}
 
-		public Usuario getId_Usuario() {
-			return id_Usuario;
+		
+
+		public Usuario getUsuario() {
+			return usuario;
 		}
 
-		public void setId_Usuario(Usuario id_Usuario) {
-			this.id_Usuario = id_Usuario;
+		public void setUsuario(Usuario usuario) {
+			this.usuario = usuario;
 		}
 
 		public Seleccion getSeleccion() {

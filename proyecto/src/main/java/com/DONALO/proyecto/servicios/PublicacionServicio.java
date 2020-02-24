@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,16 +33,25 @@ public class PublicacionServicio {
 	
 	
 	@Transactional
-	public void altaPublicacion (String titulo, String descripcion,String id_usuario, MultipartFile archivo,Seleccion seleccion) throws ErrorServicio {
-		Usuario usuario = usuarioRepositorio.getOne(id_usuario);
-		validacion (titulo, descripcion,seleccion);
+	public void altaPublicacion (String titulo, String descripcion, @AuthenticationPrincipal Usuario usuario, MultipartFile archivo, Seleccion seleccion) throws ErrorServicio {
+//		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//		UserDetails userDetails = null;
+//		if (principal instanceof UserDetails) {
+//		  userDetails = (UserDetails) principal;
+//		}
+//		usuario =  (Usuario) userDetails;
+//		
+//		String userName = userDetails.getUsername();
+//		
+		//Usuario usuario = usuarioRepositorio.getOne(id_usuario);
+		validacion (titulo, descripcion);
 		
 		Publicacion publicacion = new Publicacion();
 		
 	    publicacion.setTitulo(titulo);
 		publicacion.setDescripcion(descripcion);
-		publicacion.setId_Usuario(usuario);
-		publicacion.setSeleccion(seleccion);
+		publicacion.setSeleccion(Seleccion.DONAR);
+		publicacion.setUsuario(usuario);
 		publicacion.setAlta(new Date());
 		Foto foto = fotoServicio.guardar(archivo);
 		publicacion.setFoto(foto);
@@ -51,7 +62,7 @@ public class PublicacionServicio {
 	
 	
 	@Transactional
-	public void validacion (String  titulo, String descripcion, Seleccion seleccion) throws ErrorServicio {
+	public void validacion (String  titulo, String descripcion) throws ErrorServicio {
 		
 		if(titulo==null||titulo.isEmpty()) {
 			throw new ErrorServicio("Debe consignar el titulo de su publicacion");
@@ -60,9 +71,6 @@ public class PublicacionServicio {
 			throw new ErrorServicio("Describa brevemente su donacion o solicitud");
 		}
 		
-		if(seleccion == null) {
-			throw new ErrorServicio("La seleccion del objeto no puede ser nula");
-		}
 	}
 
 
@@ -78,7 +86,7 @@ public class PublicacionServicio {
 		
 		 if(respuesta.isPresent()){
 		        Publicacion publicacion = respuesta.get();
-		        if ( publicacion.getId_Usuario().getId().equals(id_Usuario)){
+		        if ( publicacion.getUsuario().getId().equals(id_Usuario)){
 		        	publicacion.setDescripcion(descripcion);
 		    		publicacion.setSeleccion(seleccion);
 		        
@@ -105,7 +113,7 @@ public class PublicacionServicio {
 	        
 	        if(respuesta.isPresent()){
 	          Publicacion publicacion = respuesta.get();
-	          if (publicacion.getId_Usuario().getId().equals(id_Usuario)){
+	          if (publicacion.getUsuario().getId().equals(id_Usuario)){
 	            publicacion.setBaja(new Date());
 	             publicacionRepositorio.save(publicacion);
 	          }
