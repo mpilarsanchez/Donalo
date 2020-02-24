@@ -6,8 +6,17 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.DONALO.proyecto.entidades.Usuario;
+import com.DONALO.proyecto.repositorios.UsuarioRepositorio;
+
+
+
 @Controller
 public class PortalControlador {
+
+@Autowired
+private UsuarioRepositorio repositorio;
+	
 	
 	@GetMapping("/")
     public String home(){
@@ -40,4 +49,6 @@ public class PortalControlador {
 	        return "login.html";
 	    }
     
+    	
+    }
 }
