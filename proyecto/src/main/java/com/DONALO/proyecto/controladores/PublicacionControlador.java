@@ -2,6 +2,9 @@ package com.DONALO.proyecto.controladores;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,28 +33,41 @@ public class PublicacionControlador {
 	@Autowired
 	UsuarioRepositorio usuarioRepositorio;
 	
+	
 	@GetMapping("/crear")
-    public String publicacion(){
+    public String crear(){
         
         return "crear_publicacion.html";
     }
 	
-	@PreAuthorize("hasAnyRole('ROLE_USUARIO_REGISTRADO')")
+	
+
 	@PostMapping("/publicar")
-	public String actualizar(@RequestParam(required = false) String id, @RequestParam String id_usuario, @RequestParam String titulo,
-			@RequestParam String descripcion, MultipartFile archivo,Seleccion seleccion, ModelMap modelo) throws ErrorServicio  {
-      
+	 
+	public String publicar(ModelMap modelo, @RequestParam String titulo,@RequestParam String descripcion,@AuthenticationPrincipal Usuario usuario,  MultipartFile archivo, Seleccion seleccion) throws ErrorServicio  {
+		
 		try {
-			publicacionServicio.altaPublicacion(titulo, descripcion, id_usuario, archivo, seleccion);
+			publicacionServicio.altaPublicacion(titulo,descripcion, usuario, archivo, seleccion);
 		} catch (Exception ex) {
 			modelo.put("error", ex.getMessage());
-
-			return "redirect:/publicacion/crear?id=" + id + "&error=" + ex.getMessage();
+			modelo.put("titulo", titulo);
+	        modelo.put("descripcion", descripcion);
+	        
+			//return "redirect:/publicacion/crear?id=" + id + "&error=" + ex.getMessage();
+		 return "crear_publicacion.html";
 		}
-
+		modelo.put("titulo", titulo);
+        modelo.put("descripcion", descripcion);
 		//return "redirect:/publicacion/detalle";
-		return "redirect:/";
+		return "redirect:/publicacion/detalle";
 	}
+	
+	@GetMapping("/detalle")
+    public String publicacion(){
+        
+        return "publicacion.html";
+    }
+	
 }
 
 
