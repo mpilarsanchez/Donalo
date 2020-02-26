@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -58,12 +58,9 @@
         <div class="col-lg-6 order-lg-1">
           <div class="p-5">
             <h2 class="display-4">Editar Perfil</h2>
-	<form action="/editar_perfil/editar" method="POST" enctype="multipart/form-data">
+	<form action="editar_perfil/editar" method="POST" enctype="multipart/form-data">
 		<p th:if="${error != null}" th:text="${error}" style="color: red;"></p>
 
-		<label>Username</label> 
-		<input type="text" class="form-control" name="nombre" th:placeholder="${usernameviejo}" th:value="${username}" />  <br />
-			
 		
 		
 		

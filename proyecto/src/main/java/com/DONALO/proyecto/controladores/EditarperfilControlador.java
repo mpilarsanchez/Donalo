@@ -1,7 +1,9 @@
 package com.DONALO.proyecto.controladores;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,61 +11,115 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.DONALO.proyecto.entidades.Usuario;
 import com.DONALO.proyecto.errores.ErrorServicio;
+import com.DONALO.proyecto.repositorios.UsuarioRepositorio;
 import com.DONALO.proyecto.servicios.UsuarioServicio;
 
 @Controller
-@RequestMapping("/editar_perfil")
-public class EditarperfilControlador {
 
+public class EditarperfilControlador {
+@Autowired
+public UsuarioRepositorio repo;
 
 
 @Autowired
 private UsuarioServicio servicio;
-@GetMapping("/")
-public String cargar(ModelMap modelo, @AuthenticationPrincipal Usuario usuario) {
 
-	modelo.put("nombreviejo", usuario.getNombre());
-	modelo.put("apellidoviejo", usuario.getNombre());
-	modelo.put("mailviejo", usuario.getNombre());
-	modelo.put("usernamevijo", usuario.getUsername());
-	return "perfil.html";
+
+
+
+
+
+@GetMapping("/editar_perfil")
+public String cargar(ModelMap modelo) {
+
+	 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    Usuario usuario = repo.buscarPorMail(auth.getName());
 	
+	modelo.put("nombreviejo", usuario.getNombre());
+	modelo.put("apellidoviejo", usuario.getApellido());
+	modelo.put("mailviejo", usuario.getMail());
+
+	return "editar_perfil.html";
+
 }
 
+//@PostMapping("")
+//public String editar( ModelMap modelo, @RequestParam String nombre, @RequestParam String apellido, @RequestParam String mail, @RequestParam String clave1, @RequestParam String clave2, MultipartFile archivo,  @RequestParam String username){
+//	
+//	System.out.println("Entre al metodo bajo mapping editar");
+//	
+//	 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+//     Usuario usuario = repo.buscarPorMail(auth.getName());
+//	
+//	
+//	   try {	        servicio.modificacionUsuario(archivo, usuario.getId() , nombre, apellido, mail, clave1, clave2);
+//	    } catch (ErrorServicio ex) {
+//	    	System.out.println("________________________________");
+//	    	System.out.println("ERROR ACA");
+//    	ex.printStackTrace();
+//        modelo.put("error", ex.getMessage());
+//	        modelo.put("nombre", nombre);
+//	        modelo.put("apellido", apellido);
+//	        modelo.put("mail", mail);
+//	        modelo.put("clave1", clave1);
+//	        modelo.put("clave2", clave2);
+//	        modelo.put("username", username);
+//	        return "editar_perfil.html";
+//	    }
+//	    
+//	   return "perfil.html";
+//	}
 
-@PostMapping("/editar")
-public String editar(@AuthenticationPrincipal Usuario usuario, ModelMap modelo, @RequestParam String nombre, @RequestParam String apellido, @RequestParam String mail, @RequestParam String clave1, @RequestParam String clave2, MultipartFile archivo,  @RequestParam String username){
+
+@PostMapping("editar_perfil/editar")
+public RedirectView editar( ModelMap modelo, @RequestParam String nombre, @RequestParam String apellido, @RequestParam String mail, @RequestParam String clave1, @RequestParam String clave2, MultipartFile archivo){
+	
+	System.out.println("Entre al metodo bajo mapping editar");
+	
+	 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+   Usuario usuario = repo.buscarPorMail(auth.getName());
+	
 	
 	   try {
-	        servicio.modificacionUsuario(archivo, usuario.getId() , nombre, apellido, mail, clave1, clave2, username);
+	        servicio.modificacionUsuario(archivo, usuario.getId() , nombre, apellido, mail, clave1, clave2);
 	    } catch (ErrorServicio ex) {
-	       
+	    	System.out.println("________________________________");
+	    	System.out.println("ERROR ACA");
+	    	ex.printStackTrace();
 	        modelo.put("error", ex.getMessage());
 	        modelo.put("nombre", nombre);
 	        modelo.put("apellido", apellido);
 	        modelo.put("mail", mail);
 	        modelo.put("clave1", clave1);
 	        modelo.put("clave2", clave2);
-	        modelo.put("username", username);
-	        return "registro.html";
+	      
+	        return new RedirectView("editar_perfil");
 	    }
 	    
-	   return "perfil.html";
+	   
+	   usuario = repo.buscarPorMail(auth.getName());
+	   
+	   
+	   modelo.put("nombre", usuario.getNombre());
+	   modelo.put("apellido", usuario.getApellido());
+	   modelo.put("mail", usuario.getMail());
+	   
+	   return new RedirectView("perfil");
+	   
+	   
+	   
+	
+	   
+	   
 	}
-	
-	
-	
-	
-	
 
 
 
 
 }
-	
-	
 	
 	
