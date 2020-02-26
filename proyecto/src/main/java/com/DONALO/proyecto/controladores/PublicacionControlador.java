@@ -48,16 +48,6 @@ public class PublicacionControlador {
       Authentication auth = SecurityContextHolder.getContext().getAuthentication();
       Usuario usuario = usuarioRepositorio.buscarPorMail(auth.getName());
 		
-		//  idUsuario = SecurityContextHolder.getContext().getAuthentication().getName();
-//		SecurityContextHolder.getContext().SecurityContextHolder.getContext().getAuthentication().getAuthentication();
-//		Object principal = .getPrincipal();
-//		UserDetails userDetails = null;
-//		if (principal instanceof UserDetails) {
-//		  userDetails = (UserDetails) principal;
-//		}
-//		 usuario =  (Usuario) userDetails;
-		
-		//Usuario usuario = (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		try {
 			publicacionServicio.altaPublicacion(titulo,descripcion, usuario, archivo, seleccion);
 		} catch (Exception ex) {
