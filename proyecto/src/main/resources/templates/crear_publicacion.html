@@ -56,8 +56,8 @@
 	<form action="/publicacion/publicar" method="POST" enctype="multipart/form-data">
 		<!-- <p th:if="${error != null}" th:text="${error}" style="color: red;"></p>
 			<input type="hidden" name="id" th:value="${id}" />
-			 <h2 class="masthead-subheading mb-0" th:if="${session.usuariosession != null}" th:text="${session.usuariosession.nombre + ' ' + session.usuariosession.apellido}"></h2> 
-		   	<input type="hidden" th:if="${session.usuariosession != null}" name="id_usuario" th:value="${session.usuariosession.id" />-->
+			 <h2 class="masthead-subheading mb-0" th:if="${session.usuariosession != null}" th:text="${session.usuariosession.nombre + ' ' + session.usuariosession.apellido}"></h2>
+		   	<input type="hidden" th:if="${session.usuariosession != null}" name="idUsuario" th:value="${session.usuariosession.id" />-->
 		   
 		    
 		
@@ -73,11 +73,11 @@
 		<p>Selecciona si tu publicacion es:</p>
 			  <div>
 			    <input type="radio" id="contactChoice1"
-			     name="DONAR" value="${seleccion}">
+			     name="seleccion" value="DONAR">
 			    <label for="contactChoice1">Para Donar</label>
 			
 			    <input type="radio" id="contactChoice2"
-			     name="RECIBIR" value="${seleccion}">
+			     name="seleccion" value="RECIBIR">
 			    <label for="contactChoice2">Para Solicitar</label>
 			
 			  </div>

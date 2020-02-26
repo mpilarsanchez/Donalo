@@ -3,6 +3,7 @@ package com.DONALO.proyecto.servicios;
 import java.util.Date;
 import java.util.Optional;
 
+import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -33,24 +34,26 @@ public class PublicacionServicio {
 	
 	
 	@Transactional
-	public void altaPublicacion (String titulo, String descripcion, @AuthenticationPrincipal Usuario usuario, MultipartFile archivo, Seleccion seleccion) throws ErrorServicio {
-//		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//		UserDetails userDetails = null;
-//		if (principal instanceof UserDetails) {
+	public void altaPublicacion (String titulo, String descripcion,  Usuario usuario, MultipartFile archivo, String seleccion) throws ErrorServicio {
+	//	Usuario usuario = usuarioRepositorio.findById(idUsuario).get();
+	
+//	Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//	UserDetails userDetails = null;
+//	if (principal instanceof UserDetails) {
 //		  userDetails = (UserDetails) principal;
 //		}
-//		usuario =  (Usuario) userDetails;
-//		
-//		String userName = userDetails.getUsername();
-//		
-		//Usuario usuario = usuarioRepositorio.getOne(id_usuario);
+//	usuario =  (Usuario) userDetails;
+//	
+//	String userName = userDetails.getUsername();
+
+		
 		validacion (titulo, descripcion);
 		
 		Publicacion publicacion = new Publicacion();
 		
 	    publicacion.setTitulo(titulo);
 		publicacion.setDescripcion(descripcion);
-		publicacion.setSeleccion(Seleccion.DONAR);
+		publicacion.setSeleccion(Seleccion.valueOf(seleccion));
 		publicacion.setUsuario(usuario);
 		publicacion.setAlta(new Date());
 		Foto foto = fotoServicio.guardar(archivo);

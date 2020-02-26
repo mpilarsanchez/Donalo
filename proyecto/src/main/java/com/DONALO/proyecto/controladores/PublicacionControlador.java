@@ -2,6 +2,7 @@ package com.DONALO.proyecto.controladores;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -33,7 +34,7 @@ public class PublicacionControlador {
 	@Autowired
 	UsuarioRepositorio usuarioRepositorio;
 	
-	
+	@PreAuthorize("hasAnyRole('ROLE_USUARIO_REGISTRADO')")
 	@GetMapping("/crear")
     public String crear(){
         
@@ -41,11 +42,22 @@ public class PublicacionControlador {
     }
 	
 	
-
+	@PreAuthorize("hasAnyRole('ROLE_USUARIO_REGISTRADO')")
 	@PostMapping("/publicar")
-	 
-	public String publicar(ModelMap modelo, @RequestParam String titulo,@RequestParam String descripcion,@AuthenticationPrincipal Usuario usuario,  MultipartFile archivo, Seleccion seleccion) throws ErrorServicio  {
+	 public String publicar(ModelMap modelo, @RequestParam String titulo,@RequestParam String descripcion, MultipartFile archivo, @RequestParam String seleccion) throws ErrorServicio  {
+      Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+      Usuario usuario = usuarioRepositorio.buscarPorMail(auth.getName());
 		
+		//  idUsuario = SecurityContextHolder.getContext().getAuthentication().getName();
+//		SecurityContextHolder.getContext().SecurityContextHolder.getContext().getAuthentication().getAuthentication();
+//		Object principal = .getPrincipal();
+//		UserDetails userDetails = null;
+//		if (principal instanceof UserDetails) {
+//		  userDetails = (UserDetails) principal;
+//		}
+//		 usuario =  (Usuario) userDetails;
+		
+		//Usuario usuario = (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		try {
 			publicacionServicio.altaPublicacion(titulo,descripcion, usuario, archivo, seleccion);
 		} catch (Exception ex) {

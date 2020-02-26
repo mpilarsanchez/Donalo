@@ -59,9 +59,11 @@
      <div class="row ">   
         <div class="card-text-center">
           <div class="p-5">
-            <h2 class="card-text display-4" th:text="${nombre}" >Nombre </h2> 
+             <h2 class="masthead-subheading mb-0" th:if="${session.usuariosession != null}" th:text="${session.usuariosession.nombre + ' ' + session.usuariosession.apellido}"></h2>
+             <h2 class="masthead-subheading mb-0" th:if="${session.usuariosession != null}" th:text="${session.usuariosession.mail}"></h2>
+           <!--   <h2 class="card-text display-4" th:text="${nombre}" >Nombre </h2> 
             <h2 class="display-4" th:text="${apellido}" >Apellido</h2>
-            <h2 class="display-4" th:text="${mail}" >Mail</h2>
+            <h2 class="display-4" th:text="${mail}" >Mail</h2>-->
             <p ckass="card-text">Lorem, ipsum dolor sit amet 
                 consectetur adipisicing elit. Fugit 
                 pariatur ratione optio laboriosam enim 

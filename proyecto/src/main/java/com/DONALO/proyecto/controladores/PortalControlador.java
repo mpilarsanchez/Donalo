@@ -34,7 +34,7 @@ public class PortalControlador {
 	 @PreAuthorize("hasAnyRole('ROLE_USUARIO_REGISTRADO')")
 	    @GetMapping("/inicio")
 	    public String inicio(){
-	        return "inicio.html";
+	        return "perfil.html";
 	    }
 	    
 	    @GetMapping("/login")
