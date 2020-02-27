@@ -37,7 +37,7 @@ public class UsuarioServicio implements UserDetailsService{
 
 	@Transactional
 	public void altaUsuario(String nombre, String apellido, String mail, String clave, String clave2,
-			MultipartFile archivo, String username) throws ErrorServicio {
+			MultipartFile archivo) throws ErrorServicio {
 
 		validar(nombre, apellido, mail, clave, clave2);
 
@@ -46,7 +46,7 @@ public class UsuarioServicio implements UserDetailsService{
 		usuario.setNombre(nombre);
 		usuario.setApellido(apellido);
 		usuario.setMail(mail);
-		usuario.setUsername(username);
+		
 
 		// Seguridad de la clave
 		String encriptada = new BCryptPasswordEncoder().encode(clave);
@@ -88,7 +88,7 @@ public class UsuarioServicio implements UserDetailsService{
 
 	@Transactional
 	public void modificacionUsuario(MultipartFile archivo, String id, String nombre, String apellido, String mail,
-			String clave, String clave2, String username) throws ErrorServicio {
+			String clave, String clave2) throws ErrorServicio {
 		validar(nombre, apellido, mail, clave, clave2);
 
 		Optional<Usuario> respuesta = usuarioRepositorio.findById(id);
@@ -98,7 +98,7 @@ public class UsuarioServicio implements UserDetailsService{
 			usuario.setNombre(nombre);
 			usuario.setApellido(apellido);
 			usuario.setMail(mail);
-			usuario.setUsername(username);
+		
 			String encriptada = new BCryptPasswordEncoder().encode(clave);
 			usuario.setClave(encriptada);
 
