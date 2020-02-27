@@ -97,7 +97,7 @@ public RedirectView editar( ModelMap modelo, @RequestParam String nombre, @Reque
 	        modelo.put("clave1", clave1);
 	        modelo.put("clave2", clave2);
 	      
-	        return new RedirectView("editar_perfil");
+	        return new RedirectView("/editar_perfil");
 	    }
 	    
 	   
@@ -108,7 +108,7 @@ public RedirectView editar( ModelMap modelo, @RequestParam String nombre, @Reque
 	   modelo.put("apellido", usuario.getApellido());
 	   modelo.put("mail", usuario.getMail());
 	   
-	   return new RedirectView("perfil");
+	   return new RedirectView("/perfil");
 	   
 	   
 	   
