@@ -1,19 +1,34 @@
 
 <!doctype html>
 <html lang="en">
+
 <head>
 <!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<title>Donalo Log In</title>
+<title>Donalo LogIn</title>
 <!-- Bootstrap CSS -->
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
 	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
 	crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="css/home.css">
+
+<style>
+/* Este es para los elementos en general */
+.navbar-light .navbar-nav .nav-link {
+color: #b71c1c;
+font: bold 150% monospace;
+
+}
+/*  Este es para el elemento activo lo puedes omitir */
+.navbar-light .navbar-nav .active>.nav-link  {
+ color: #b71c1c;
+font: bold 150% monospace;
+}
+</style>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
 	<a class="navbar-brand" href="/"><img class="logo"
@@ -31,17 +46,17 @@
 			</a></li>
 			<li class="nav-item"><a class="nav-link"
 				href="/registro/formulario">Registro</a></li>
-			<li class="nav-item"><a class="nav-link" href="/login">Log
-					In</a></li>
-			<li class="nav-item dropdown"><a
-				class="nav-link dropdown-toggle" href="#"
-				id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
-				aria-haspopup="true" aria-expanded="false"> menu link </a>
-				<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-					<a class="dropdown-item" href="#">Cerrar sesión</a> <a
-						class="dropdown-item" href="#">Petición</a> <a
-						class="dropdown-item" href="#">Donar</a>
-				</div></li>
+<!-- 			<li class="nav-item"><a class="nav-link" href="/login">Log -->
+<!-- 					In</a></li> -->
+<!-- 			<li class="nav-item dropdown"><a -->
+<!-- 				class="nav-link dropdown-toggle" href="#" -->
+<!-- 				id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" -->
+<!-- 				aria-haspopup="true" aria-expanded="false"> menu link </a> -->
+<!-- 				<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink"> -->
+<!-- 					<a class="dropdown-item" href="#">Cerrar sesión</a> <a -->
+<!-- 						class="dropdown-item" href="#">Petición</a> <a -->
+<!-- 						class="dropdown-item" href="#">Donar</a> -->
+<!-- 				</div></li> -->
 		</ul>
 	</div>
 </nav>
@@ -57,21 +72,21 @@
 				</div>
 				<div class="col-lg-6 order-lg-1">
 					<div class="p-5">
-						<h2 class="display-4">Logueate</h2>
+						<h2 class="display-4"  style=color:white;>Log In</h2>
             <form action="/logincheck" method="POST">
                <p th:if="${error != null}" th:text="${error}" style="color:red"></p>
                <p th:if="${logout != null}" th:text="${logout}" style="color:green"></p>
 
-               <label>E-Mail</label>
+               <label style=color:white;>E-Mail</label>
               <input type="email" class="form-control" name="username"/>
               
-              <label>Clave</label>
+              <label style=color:white;>Clave</label>
               <input type="password" class="form-control" name="password"/>
               
               <br/><button type="submit" class="btn btn-primary">Ingresar</button>
 							<div class="col-auto my-1">
 					          <div class="form-check">
-						         <input class="form-check-input" type="checkbox" id="autoSizingCheck2"> <label class="form-check-label" for="autoSizingCheck2"> Recuérdame </label>
+						         <input class="form-check-input" type="checkbox" id="autoSizingCheck2"> <label class="form-check-label" for="autoSizingCheck2" style=color:white;> Recuérdame </label>
 					</div>
 				</div>
 						</form>

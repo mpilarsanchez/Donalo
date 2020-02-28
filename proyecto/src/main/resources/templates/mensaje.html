@@ -47,54 +47,22 @@
 </header>
 <body>
 
+<div id= "contenedor">
+       
+<div id="div">
 
- <section>
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="card hovercard text-center">
-            <div class="cardheader">
-        <div class="col-lg-12 order-lg-2">
-         
-        </div>
-     <div class="row ">   
-        <div class="card-text-center">
-          <div class="p-5">
-            <h2 class="card-text display-4"  >Enviar Mensaje a  </h2> 
-             <h6 class="display-4" th:text="${nombre}" >Nombre</h6>
-            <h6 class="display-4" th:text="${apellido}" >Apellido</h6>
-            <h6 class="display-4" th:text="${mail}" >Mail</h6>
-			<form>
-				
-				<textarea class="form-control textarea-autosize" rows="15" cols="20" id="floating-icon" rows="1"></textarea>
-						
-				
-				
-				<div class="form-inline">
-				<div class="col text-center">
-				<button class="btn btn-primary" type="submit">Enviar Mensaje</button>
-				</div>
-				</div>
-			</form>
-          </div>
-      </div>
-    </div>
-</div>
-</div>
-</div>
-  </section>
+   <a class="twitter-timeline" href=""> Servicio De Comentarios</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
+    </div> 
+    
+  </div>
+<form method="POST" action="index.html">
+    <input type="text" name="nombre" placeholder="Ingresa tu nombre">
+    <textarea name="mensaje" placeholder="Ingresa tu mensaje"></textarea>
+    <input type="submit" name="enviar" value="Enviar">
+</form>
 
-
-
-
-</section>
-
-
-
-
-
-
-
+</div>  
 
 
 </body>
@@ -102,6 +70,4 @@
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-  
-</html>
+ 
