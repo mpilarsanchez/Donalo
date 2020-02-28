@@ -6,13 +6,31 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<title>Donalo *home</title>
+<title>Donalo Registro</title>
 <!-- Bootstrap CSS -->
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
 	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
 	crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="/css/home.css">
+
+<style>
+/* Este es para los elementos en general */
+.navbar-light .navbar-nav .nav-link {
+color: #b71c1c;
+font: bold 150% monospace;
+
+}
+/*  Este es para el elemento activo lo puedes omitir */
+.navbar-light .navbar-nav .active>.nav-link  {
+ color: #b71c1c;
+font: bold 150% monospace;
+}
+
+h2{color: white;}
+p{color:white;}
+</style>
+
 </head>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -29,19 +47,18 @@
 			<li class="nav-item active"><a class="nav-link" href="/">Home
 					<span class="sr-only">(current)</span>
 			</a></li>
-			<li class="nav-item"><a class="nav-link"
-				href="/registro/formulario">Registro</a></li>
-			<li class="nav-item"><a class="nav-link" href="/login">Log
-					In</a></li>
-			<li class="nav-item dropdown"><a
-				class="nav-link dropdown-toggle" href="#"
-				id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
-				aria-haspopup="true" aria-expanded="false"> menu link </a>
-				<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-					<a class="dropdown-item" href="#">Cerrar sesión</a> <a
-						class="dropdown-item" href="#">Petición</a> <a
-						class="dropdown-item" href="#">Donar</a>
-				</div></li>
+<!-- 			<li class="nav-item"><a class="nav-link" -->
+<!-- 				href="/registro/formulario">Registro</a></li> -->
+			<li class="nav-item"><a class="nav-link" href="/login">LogIn</a></li>
+<!-- 			<li class="nav-item dropdown"><a -->
+<!-- 				class="nav-link dropdown-toggle" href="#" -->
+<!-- 				id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" -->
+<!-- 				aria-haspopup="true" aria-expanded="false"> menu link </a> -->
+<!-- 				<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink"> -->
+<!-- 					<a class="dropdown-item" href="#">Cerrar sesión</a> <a -->
+<!-- 						class="dropdown-item" href="#">Petición</a> <a -->
+<!-- 						class="dropdown-item" href="#">Donar</a> -->
+<!-- 				</div></li> -->
 		</ul>
 	</div>
 </nav>
@@ -64,25 +81,25 @@
 						
 						
 						
-							<label>Nombre</label> 
+							<label style=color:white;>Nombre</label> 
 							<input type="text" class="form-control" name="nombre" th:value="${nombre}" /> <br/> 
 							
-							<label>Apellido</label>
+							<label style=color:white;>Apellido</label>
 							<input type="text" class="form-control" name="apellido"	th:value="${apellido}" /> <br/> 
 							
-							<label>E-Mail</label> 
+							<label style=color:white;>E-Mail</label> 
 							<input type="email" class="form-control" name="mail" th:value="${mail}" /><br/> 
 							
-							<label>Foto</label> 
+							<label style=color:white;>Foto</label> 
 							<input type="file"class="form-control" name="archivo" /> <br /> 
 							
-							<label>Clave</label>
+							<label style=color:white;>Clave</label>
 							<input type="password" class="form-control" name="clave1" th:value="${clave1}" /><br/> 
 							
-							<label>Repetir Clave</label> 
+							<label style=color:white;>Repetir Clave</label> 
 							<input type="password" class="form-control" name="clave2"th:value="${clave2}" /><br/>
 							
-							<button type="submit" class="btn btn-primary">Registrarme</button>
+							<button type="submit" class="btn btn-primary" >Registrarme</button>
 						</form>
 					</div>
 				</div>
