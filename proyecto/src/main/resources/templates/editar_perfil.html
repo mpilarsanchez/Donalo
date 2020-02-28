@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -46,6 +46,60 @@
 </nav>
 </header>
 <body>
+
+ <section>
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6 order-lg-2">
+          <div class="p-5">
+            <img class="img-fluid rounded-circle" src="img/m1.jpeg" alt="">
+          </div>
+        </div>
+        <div class="col-lg-6 order-lg-1">
+          <div class="p-5">
+            <h2 class="display-4">Editar Perfil</h2>
+	<form action="/editar_perfil/editar" method="POST" enctype="multipart/form-data">
+		<p th:if="${error != null}" th:text="${error}" style="color: red;"></p>
+
+		
+		
+		
+		<label>Nombre</label> 
+		<input type="text" class="form-control" name="nombre" th:placeholder="${nombreviejo}" th:text="${nombre}" th:value="${nombre}" />  <br />
+			
+		<label>Apellido</label> 
+		<input type="text" class="form-control" name="apellido" th:placeholder="${apellidoviejo}" th:value="${apellido}" /> <br /> 
+			
+		<label>E-Mail</label> 
+		<input type="email" class="form-control" name="mail" th:placeholder="${mailviejo}" th:value="${mail}" />  <br />
+		
+		<label>Foto</label>
+		<input type="file" class="form-control" name="archivo" />  <br />
+		
+		<label>Clave</label>
+		<input type="password" class="form-control" name="clave1" th:value="${clave1}" /> <br /> 
+			
+		<label>Repetir Clave</label> 
+		<input type="password" class="form-control" name="clave2" th:value="${clave2}" /> <br />
+		<button type="submit" class="btn btn-primary">Editar</button>
+	</form>
+	          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+	
+
+
+
+
+
+
+
+
+
+
+
 
 </body>
     <!-- Optional JavaScript -->

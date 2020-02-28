@@ -15,21 +15,21 @@ import com.DONALO.proyecto.servicios.UsuarioServicio;
 
 
 @Controller
-@RequestMapping("/registro")
+
 public class RegistroControlador {
 
 @Autowired
 private UsuarioServicio usuarioServicio;
 
 
-@GetMapping("/formulario")
+@GetMapping("registro/formulario")
 public String formulario() {
 	
 	return "registro.html";
 }
 
-@PostMapping("/registrar")
-public String registrar(ModelMap modelo,@RequestParam String nombre, @RequestParam String apellido, @RequestParam String mail, @RequestParam String clave1, @RequestParam String clave2,  MultipartFile archivo){
+@PostMapping("registro/registrar")
+public String registrar(ModelMap modelo,@RequestParam String nombre, @RequestParam String apellido, @RequestParam String mail, @RequestParam String clave1, @RequestParam String clave2, MultipartFile archivo){
     try {
         usuarioServicio.altaUsuario(nombre, apellido, mail, clave1, clave2, archivo);
     } catch (ErrorServicio ex) {
@@ -46,6 +46,7 @@ public String registrar(ModelMap modelo,@RequestParam String nombre, @RequestPar
     
     modelo.put("nombre", nombre);
     modelo.put("apellido", apellido);
+ 
     modelo.put("titulo", "Bienvenido a Donalo!!.");
     modelo.put("descripcion", "Tu usuario fue registrado de manera satisfactoria");
     return "home.html";

@@ -1,9 +1,14 @@
 package com.DONALO.proyecto.servicios;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
+import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -15,6 +20,8 @@ import com.DONALO.proyecto.enumeraciones.Seleccion;
 import com.DONALO.proyecto.errores.ErrorServicio;
 import com.DONALO.proyecto.repositorios.PublicacionRepositorio;
 import com.DONALO.proyecto.repositorios.UsuarioRepositorio;
+
+
 
 @Service
 public class PublicacionServicio {
@@ -30,16 +37,16 @@ public class PublicacionServicio {
 	
 	
 	@Transactional
-	public void altaPublicacion (MultipartFile archivo,String id_Usuario,String descripcion, Seleccion seleccion) throws ErrorServicio {
-	
+	public void altaPublicacion (String titulo, String descripcion,  Usuario usuario, MultipartFile archivo, String seleccion) throws ErrorServicio {
 		
-		Usuario usuario = usuarioRepositorio.findById(id_Usuario).get();
-		validacion (id_Usuario,seleccion);
+		validacion (titulo, descripcion);
+		
 		Publicacion publicacion = new Publicacion();
 		
-	
+	    publicacion.setTitulo(titulo);
 		publicacion.setDescripcion(descripcion);
-		publicacion.setSeleccion(seleccion);
+		publicacion.setSeleccion(Seleccion.valueOf(seleccion));
+		publicacion.setUsuario(usuario);
 		publicacion.setAlta(new Date());
 		Foto foto = fotoServicio.guardar(archivo);
 		publicacion.setFoto(foto);
@@ -50,30 +57,38 @@ public class PublicacionServicio {
 	
 	
 	@Transactional
-	public void validacion (String id_Usuario, Seleccion seleccion) throws ErrorServicio {
+	public void validacion (String  titulo, String descripcion) throws ErrorServicio {
 		
-		if(id_Usuario==null||id_Usuario.isEmpty()) {
-			throw new ErrorServicio("El usuario no puede ser nulo o estar vacío");
+		if(titulo==null||titulo.isEmpty()) {
+			throw new ErrorServicio("Debe consignar el titulo de su publicacion");
+		}
+		if(descripcion==null||descripcion.isEmpty()) {
+			throw new ErrorServicio("Describa brevemente su donacion o solicitud");
 		}
 		
-		if(seleccion == null) {
-			throw new ErrorServicio("La seleccion del objeto no puede ser nula");
-		}
 	}
 
-
+	public List<Publicacion> buscarPublicacion() {
+		   return publicacionRepositorio.findAll();
+		
+	   }
+	 public List<Publicacion> buscarPublicacion(String q) {
+		   List<Publicacion> publicaciones = publicacionRepositorio.buscarPublicacion(q);
+		return publicaciones;
+	   }
 		
 	
 	
 	@Transactional
 	public void modificacionPublicacion (MultipartFile archivo,String id_Usuario,String descripcion, Seleccion seleccion) throws ErrorServicio{
-		validacion (id_Usuario,seleccion);
+		
+		//validacion (id_Usuario,seleccion);
 		
 		Optional<Publicacion> respuesta = publicacionRepositorio.findById(id_Usuario);
 		
 		 if(respuesta.isPresent()){
 		        Publicacion publicacion = respuesta.get();
-		        if ( publicacion.getId_Usuario().getId().equals(id_Usuario)){
+		        if ( publicacion.getUsuario().getId().equals(id_Usuario)){
 		        	publicacion.setDescripcion(descripcion);
 		    		publicacion.setSeleccion(seleccion);
 		        
@@ -100,7 +115,7 @@ public class PublicacionServicio {
 	        
 	        if(respuesta.isPresent()){
 	          Publicacion publicacion = respuesta.get();
-	          if (publicacion.getId_Usuario().getId().equals(id_Usuario)){
+	          if (publicacion.getUsuario().getId().equals(id_Usuario)){
 	            publicacion.setBaja(new Date());
 	             publicacionRepositorio.save(publicacion);
 	          }
@@ -110,9 +125,8 @@ public class PublicacionServicio {
 
 	  
 	    }
-	
-	
-	
+
+
 	
 
 	  
