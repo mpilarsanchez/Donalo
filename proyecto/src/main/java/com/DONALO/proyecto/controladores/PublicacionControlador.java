@@ -1,5 +1,7 @@
 package com.DONALO.proyecto.controladores;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -14,12 +16,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.DONALO.proyecto.entidades.Publicacion;
 import com.DONALO.proyecto.entidades.Usuario;
 import com.DONALO.proyecto.enumeraciones.Seleccion;
 import com.DONALO.proyecto.errores.ErrorServicio;
 import com.DONALO.proyecto.repositorios.UsuarioRepositorio;
 import com.DONALO.proyecto.servicios.PublicacionServicio;
 import com.DONALO.proyecto.servicios.UsuarioServicio;
+
 
 @Controller
 @RequestMapping("/publicacion")
@@ -70,58 +74,21 @@ public class PublicacionControlador {
         return "publicacion.html";
     }
 	
+	
+	@GetMapping("/publicaciones")
+	public String publicaciones(@RequestParam(required = false) String q, @RequestParam(required = false) String error, ModelMap modelo) {
+			 List<Publicacion> publicaciones ;
+			 if (q != null) {
+		            publicaciones = publicacionServicio.buscarPublicacion(q);
+		        } else {
+		        	publicaciones = publicacionServicio.buscarPublicacion();
+		        }
+		        
+		        modelo.put("q", q);
+		        modelo.put("publicaciones", publicaciones);
+		        modelo.put("error", error);
+return "publicaciones.html";
+	}
 }
 
 
-//package com.DONALO.proyecto.controladores;
-//
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.security.core.annotation.AuthenticationPrincipal;
-//import org.springframework.security.core.userdetails.UserDetails;
-//import org.springframework.stereotype.Controller;
-//import org.springframework.ui.ModelMap;
-//import org.springframework.web.bind.annotation.GetMapping;
-//import org.springframework.web.bind.annotation.PostMapping;
-//import org.springframework.web.bind.annotation.RequestMapping;
-//import org.springframework.web.bind.annotation.RequestParam;
-//import org.springframework.web.multipart.MultipartFile;
-//
-//import com.DONALO.proyecto.entidades.Usuario;
-//import com.DONALO.proyecto.enumeraciones.Seleccion;
-//import com.DONALO.proyecto.errores.ErrorServicio;
-//import com.DONALO.proyecto.servicios.PublicacionServicio;
-//import com.DONALO.proyecto.servicios.UsuarioServicio;
-//
-//@Controller
-//@RequestMapping("/publicacion")
-//public class PublicacionControlador {
-//
-//	@Autowired
-//	PublicacionServicio publicacionServicio;
-//	
-//	@Autowired
-//	UsuarioServicio usuarioServicio;
-//	
-//	@GetMapping("/crear")
-//    public String publicacion(){
-//        
-//        return "crear_publicacion.html";
-//    }
-//	
-//	@PostMapping("/actualizar")
-//	public String actualizar(@RequestParam(required = false) String id, @RequestParam String id_Usuario,
-//			@RequestParam String descripcion, MultipartFile archivo,Seleccion seleccion, ModelMap modelo) throws ErrorServicio  {
-//      
-//		try {
-//			UserDetails usuario_logueado = usuarioServicio.loadUserByUsername(id_Usuario);
-//			publicacionServicio.altaPublicacion(archivo, id_Usuario, descripcion, seleccion);
-//		} catch (Exception ex) {
-//			modelo.put("error", ex.getMessage());
-//
-//			return "redirect:/publicacion/formulario?id=" + id + "&error=" + ex.getMessage();
-//		}
-//
-//		//return "redirect:/publicacion/detalle";
-//		return "redirect:/";
-//	}
-//}
