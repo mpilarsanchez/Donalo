@@ -1,0 +1,55 @@
+section.vip-products {
+  width: 100%;
+  overflow: hidden;
+}
+
+
+/* .product: nth-child(3n) {
+  margin-right: 5%;
+} */
+article.product {
+  width: 50%;
+    position: relative;
+    float: left;
+}
+div.photo-container{
+  margin-bottom: 2vh;
+}
+
+img.photo {
+  width: 100%;
+  position: relative;
+  z-index: 10;
+}
+img.special {
+   /* float: right; */
+   position: absolute;
+   z-index: 20;
+   top: 0;
+   right: 0;
+}
+
+a.zoom {
+    position: absolute;
+    z-index: 25;
+    background-color: rgba(80,80,80,0.5);
+    bottom: 66%;
+    width: 100%;
+    text-align: center;
+    color: #fff;
+    padding: 1.5%;
+}
+
+p{
+  margin-bottom: 3vh;
+}
+
+  a.more {
+    background-color: rgba(80,80,80,1);
+    padding: 1%;
+    color: #fff;
+    text-decoration: none;
+    text-align: center;
+    margin-bottom: 3vh;
+    display: block;
+}

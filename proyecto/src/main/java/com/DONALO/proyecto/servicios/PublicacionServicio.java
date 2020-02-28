@@ -1,6 +1,7 @@
 package com.DONALO.proyecto.servicios;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
@@ -20,6 +21,8 @@ import com.DONALO.proyecto.errores.ErrorServicio;
 import com.DONALO.proyecto.repositorios.PublicacionRepositorio;
 import com.DONALO.proyecto.repositorios.UsuarioRepositorio;
 
+
+
 @Service
 public class PublicacionServicio {
 
@@ -35,17 +38,6 @@ public class PublicacionServicio {
 	
 	@Transactional
 	public void altaPublicacion (String titulo, String descripcion,  Usuario usuario, MultipartFile archivo, String seleccion) throws ErrorServicio {
-	//	Usuario usuario = usuarioRepositorio.findById(idUsuario).get();
-	
-//	Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//	UserDetails userDetails = null;
-//	if (principal instanceof UserDetails) {
-//		  userDetails = (UserDetails) principal;
-//		}
-//	usuario =  (Usuario) userDetails;
-//	
-//	String userName = userDetails.getUsername();
-
 		
 		validacion (titulo, descripcion);
 		
@@ -76,7 +68,14 @@ public class PublicacionServicio {
 		
 	}
 
-
+	public List<Publicacion> buscarPublicacion() {
+		   return publicacionRepositorio.findAll();
+		
+	   }
+	 public List<Publicacion> buscarPublicacion(String q) {
+		   List<Publicacion> publicaciones = publicacionRepositorio.buscarPublicacion(q);
+		return publicaciones;
+	   }
 		
 	
 	
