@@ -11,7 +11,19 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="/css/home.css">
     
+<style>
+/* Este es para los elementos en general */
+.navbar-light .navbar-nav .nav-link {
+color:#b71c1c;
+font: bold 150% monospace;
 
+}
+/*  Este es para el elemento activo lo puedes omitir */
+.navbar-light .navbar-nav .active>.nav-link  {
+ color: #b71c1c;
+font: bold 150% monospace;
+}
+</style>
     </head>
   <!-- Just an image -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -21,49 +33,40 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav" ml-auto mt-lg-0>
-      <li class="nav-item active">
-        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+      <li class="nav-item">
+        <a class="nav-link" href="/registro/formulario">Registro   </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/registro/formulario">Registro</a>
+        <a class="nav-link" href="/login">LogIn</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/login">Log In</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          menu link
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="#">Cerrar sesión</a>
-          <a class="dropdown-item" href="#">Petición</a>
-          <a class="dropdown-item" href="#">Donar</a>
-        </div>
-      </li>
+      
     </ul>
   </div>
 </nav>
   <body>
-    <h1>Bienvenido </h1>
       <section>
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col-lg-6 order-lg-2">
-          <div class="p-5">
-            <img class="img-fluid rounded-circle" src="img/m2.jpg" alt="">
-          </div>
-        </div>
-        <div class="col-lg-6 order-lg-1">
-          <div class="p-5">
-            <h2 class="display-4" th:text="${titulo}"></h2>
-            <h2 class="display-4" th:text="${nombre}"></h2>
-            <h2 class="display-4" th:text="${apellido}"></h2>
-            <p th:text="${descripcion}"></p>
-          </div>
-      </div>
+      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner" role="listbox">
+        <div class="carousel-item active"></div>
+        <div id="target" class="carousel-item"></div>
+        <div class="carousel-item"></div>
     </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
     
-  </section>
+      </section>
     
 
     <!-- Optional JavaScript -->
