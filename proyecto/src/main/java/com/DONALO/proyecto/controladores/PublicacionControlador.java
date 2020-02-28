@@ -75,6 +75,12 @@ public class PublicacionControlador {
     }
 	
 	
+	@GetMapping("/mensaje")
+	public String mensaje() {
+		return "mensaje.html";
+	}
+	
+	
 	@GetMapping("/publicaciones")
 	public String publicaciones(@RequestParam(required = false) String q, @RequestParam(required = false) String error, ModelMap modelo) {
 			 List<Publicacion> publicaciones ;
