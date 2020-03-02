@@ -2,15 +2,16 @@ package com.DONALO.proyecto.controladores;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,9 +19,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.DONALO.proyecto.entidades.Publicacion;
 import com.DONALO.proyecto.entidades.Usuario;
-import com.DONALO.proyecto.enumeraciones.Seleccion;
 import com.DONALO.proyecto.errores.ErrorServicio;
 import com.DONALO.proyecto.repositorios.UsuarioRepositorio;
+import com.DONALO.proyecto.servicios.FotoServicio;
 import com.DONALO.proyecto.servicios.PublicacionServicio;
 import com.DONALO.proyecto.servicios.UsuarioServicio;
 
@@ -37,6 +38,9 @@ public class PublicacionControlador {
 	
 	@Autowired
 	UsuarioRepositorio usuarioRepositorio;
+	
+	@Autowired
+	FotoServicio fotoServicio;
 	
 	@PreAuthorize("hasAnyRole('ROLE_USUARIO_REGISTRADO')")
 	@GetMapping("/crear")
@@ -64,7 +68,7 @@ public class PublicacionControlador {
 		}
 		modelo.put("titulo", titulo);
         modelo.put("descripcion", descripcion);
-		//return "redirect:/publicacion/detalle";
+
 		return "redirect:/publicacion/detalle";
 	}
 	
@@ -74,6 +78,7 @@ public class PublicacionControlador {
         return "publicacion.html";
     }
 	
+
 	
 	@GetMapping("/mensaje")
 	public String mensaje() {
@@ -93,7 +98,7 @@ public class PublicacionControlador {
 		        modelo.put("q", q);
 		        modelo.put("publicaciones", publicaciones);
 		        modelo.put("error", error);
-return "publicaciones.html";
+             return "publicaciones.html";
 	}
 }
 
