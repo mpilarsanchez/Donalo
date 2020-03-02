@@ -1,131 +1,293 @@
 <!doctype html>
 <html lang="en">
-  <head>
-	    <!-- Required meta tags -->
-	    <meta charset="utf-8">
-	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 
-	     <title>Donalo *publicaciones</title>
-		  <!-- Bootstrap CSS -->
-		  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-		  <link rel="stylesheet" type="text/css"href="/css/publicaciones.css">
-          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
-           
-    </head>
-    
-  
-  <header>  
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <a class="navbar-brand" href="/"><img class="logo" src="/img/logo.png"></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-  <div class="collapse navbar-collapse" id="navbarNavDropdown">
-    <ul class="navbar-nav" ml-auto mt-lg-0>
-      <li class="nav-item active">
-        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/registro/formulario">Registro</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/login">Log In</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> menu link </a>
-         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="/logout">Cerrar sesión</a>
-          <a class="dropdown-item" href="/publicacion/publicaciones">Peticiones</a>
-          <a class="dropdown-item" href="/publicacion/publicaciones">Donaciones</a>
-        </div>
-      </li>
-    </ul>
-  </div>
- </nav>
+<title>Donalo *publicaciones</title>
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+	crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="/css/publicaciones.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+</head>
+
+
+<header>
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<a class="navbar-brand" href="/"><img class="logo"
+			src="/img/logo.png"></a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+			aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNavDropdown">
+			<ul class="navbar-nav" ml-auto mt-lg-0>
+				<li class="nav-item active"><a class="nav-link" href="/">Home
+						<span class="sr-only">(current)</span>
+				</a></li>
+				<li class="nav-item"><a class="nav-link"
+					href="/registro/formulario">Registro</a></li>
+				<li class="nav-item"><a class="nav-link" href="/login">Log
+						In</a></li>
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" href="#"
+					id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+					aria-haspopup="true" aria-expanded="false"> menu link </a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+						<a class="dropdown-item" href="/logout">Cerrar sesión</a> <a
+							class="dropdown-item" href="/publicacion/publicaciones">Peticiones</a>
+						<a class="dropdown-item" href="/publicacion/publicaciones">Donaciones</a>
+					</div></li>
+			</ul>
+		</div>
+	</nav>
 </header>
 
 <body>
-  <p th:if="${error != null}" th:text="${error}" style="color: red;"></p>
-    
-      <form class="form-inline my-2 my-lg-0" action="/publicacion/publicaciones" method="GET">
-        <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Buscar"  name="q" th:value="${q}">
-         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar <i class="fa fa-search"></i></button>
-      </form>
-          
-  <section class="vip-products">
-        <div class="publicaciones">
-          <div class="row"   th:each="publicacion : ${publicaciones}">			   
-              <div class="card-body">
-               <img src="https://via.placeholder.com/300x250" class="w-100">
-              <h5 class="card-title" th:text="${publicacion.titulo}">Product Name</h5>
-              <p class="card-text"  th:text="${publicacion.descripcion}">Product Description</p>
-              <a href="#" class="btn btn-outline-success w-100">Show</a>
-              </div>
-            </div>
-            </div>       
-    </section>
-    
-     <!--  <div id="carouselFourColumn" class="carousel slide" data-ride="carousel" >
-       <ol class="carousel-indicators" >
-        <li data-target="#carouselFourColumn" data-slide-to="0" class="active"></li>
-        <li data-target="#carouselFourColumn" data-slide-to="1"></li>
-        <li data-target="#carouselFourColumn" data-slide-to="2"></li>
-        </ol> 
-        <div class="carousel-inner">
-        <div class="carousel-item active" th:each="publicacion : ${publicaciones}">
-          <div class="row">
-            <div class="col-6 col-md-3 p-1">	
-            <div class="card">
-             <img src="https://via.placeholder.com/300x250" class="w-100">
-              <!--  <img src='data:image/png;base64,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' /> <img src="https://via.placeholder.com/300x250" class="w-100">
-                 <!--  <img th:src="*{'data:image/jpeg;base64,'+ publicacion.foto.contenido}" alt="" />-->
-                   <!-- <img th:src="*{'/img/' + foto.id}" class="w-100">
-             <div class="card-body">          
-              <h5 class="card-title" th:text="${publicacion.titulo}"></h5>
-              <p class="card-text" th:text="${publicacion.descripcion}">Product Description</p>
-              <a href="#" class="btn btn-outline-success w-100">Show</a>
-              </div>
-              
-            </div>
-           </div> 
-           
-      
-               <a class="carousel-control-prev" href="#carouselFourColumn" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselFourColumn" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-        </a>  -->
+	<p th:if="${error != null}" th:text="${error}" style="color: red;"></p>
 
-   
-    <table class="table">
-            <thead class="thead-dark">
-                <tr>
-                    <th>Titulo</th>
-                    <th>Descripcion</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="publicacion : ${publicaciones}">
-                    <td th:text="${publicacion.titulo}"></td>
-                    <td th:text="${publicacion.descripcion}"></td>
-                    <td><a th:href="@{/publicacion/actualizar(id=${publicacion.id})}"><i class="fa fa-pencil"></i></a> - <a th:href="@{/pulicacion/eliminar(id=${publicacion.id})}"><i class="fa fa-trash"></i></a></td>
-                     
-                </tr>
-            </tbody>
-        </table>
-     <!-- Optional JavaScript -->
-   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-  <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="../js/owl.carousel.min.js"></script>
-<script type="text/javascript" src="/js/carrousel.js"></script>
-  </body>
+	<!-- <form class="form-inline my-2 my-lg-0"
+		action="/publicacion/publicaciones" method="GET">
+		<input class="form-control mr-sm-2" type="search" placeholder="Buscar"
+			aria-label="Buscar" name="q" th:value="${q}">
+		<button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+			Buscar <i class="fa fa-search"></i>
+		</button>
+	</form>
+
+	<section class="vip-products">
+		<div class="publicaciones">
+			<div class="row" th:each="publicacion : ${publicaciones}">
+				<div class="card-body">
+					<img th:src="@{/img/__${publicacion.foto.id}__}" class="w-100">
+					<h5 class="card-title" th:text="${publicacion.titulo}">Product
+						Name</h5>
+					<p class="card-text" th:text="${publicacion.descripcion}">Product
+						Description</p>
+					<a href="#" class="btn btn-outline-success w-100">Show</a>
+				</div>
+			</div>
+		</div>
+	</section> -->
+
+
+
+
+	<section>
+		<div class="container">
+			<div class="col-xl-12">
+				<h2 class="text-center text-white">Carousel 4 Column Product
+					Slider</h2>
+			</div>
+
+			<div id="carouselFourColumn" class="carousel slide"
+				data-ride="carousel">
+				<ol class="carousel-indicators">
+					<li data-target="#carouselFourColumn" data-slide-to="0"
+						class="active"></li>
+					<li data-target="#carouselFourColumn" data-slide-to="1"></li>
+					<li data-target="#carouselFourColumn" data-slide-to="2"></li>
+				</ol>
+				<div class="carousel-inner" >
+					<div class="carousel-item" th:each="publicacion : ${publicaciones}">
+						<div class="row">
+							<div class="col-6 col-md-3 p-1">
+								<div class="card">
+									<img src="https://via.placeholder.com/300x250" class="w-100">
+									<div class="card-body">
+										<h5 class="card-title">Product Name</h5>
+										<p class="card-text">Product Description</p>
+										<a href="#" class="btn btn-outline-success w-100">Show</a>
+									</div>
+								</div>
+							</div>
+							<div class="col-6 col-md-3 p-1">
+								<div class="card">
+									<img src="https://via.placeholder.com/300x250" class="w-100">
+									<div class="card-body">
+										<h5 class="card-title">Product Name</h5>
+										<p class="card-text">Product Description</p>
+										<a href="#" class="btn btn-outline-success w-100">Show</a>
+									</div>
+								</div>
+							</div>
+							<div class="col-6 col-md-3 p-1">
+								<div class="card">
+									<img src="https://via.placeholder.com/300x250" class="w-100">
+									<div class="card-body">
+										<h5 class="card-title">Product Name</h5>
+										<p class="card-text">Product Description</p>
+										<a href="#" class="btn btn-outline-success w-100">Show</a>
+									</div>
+								</div>
+							</div>
+							<div class="col-6 col-md-3 p-1">
+								<div class="card">
+									<img src="https://via.placeholder.com/300x250" class="w-100">
+									<div class="card-body">
+										<h5 class="card-title">Product Name</h5>
+										<p class="card-text">Product Description</p>
+										<a href="#" class="btn btn-outline-success w-100">Show</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="carousel-item">
+						<div class="row">
+							<div class="col-6 col-md-3 p-1">
+								<div class="card">
+									<img src="https://via.placeholder.com/300x250" class="w-100">
+									<div class="card-body">
+										<h5 class="card-title">Product Name</h5>
+										<p class="card-text">Product Description</p>
+										<a href="#" class="btn btn-outline-success w-100">Show</a>
+									</div>
+								</div>
+							</div>
+							<div class="col-6 col-md-3 p-1">
+								<div class="card">
+									<img src="https://via.placeholder.com/300x250" class="w-100">
+									<div class="card-body">
+										<h5 class="card-title">Product Name</h5>
+										<p class="card-text">Product Description</p>
+										<a href="#" class="btn btn-outline-success w-100">Show</a>
+									</div>
+								</div>
+							</div>
+							<div class="col-6 col-md-3 p-1">
+								<div class="card">
+									<img src="https://via.placeholder.com/300x250" class="w-100">
+									<div class="card-body">
+										<h5 class="card-title">Product Name</h5>
+										<p class="card-text">Product Description</p>
+										<a href="#" class="btn btn-outline-success w-100">Show</a>
+									</div>
+								</div>
+							</div>
+							<div class="col-6 col-md-3 p-1">
+								<div class="card">
+									<img src="https://via.placeholder.com/300x250" class="w-100">
+									<div class="card-body">
+										<h5 class="card-title">Product Name</h5>
+										<p class="card-text">Product Description</p>
+										<a href="#" class="btn btn-outline-success w-100">Show</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="carousel-item">
+						<div class="row">
+							<div class="col-6 col-md-3 p-1">
+								<div class="card">
+									<img src="img." class="w-100">
+									<div class="card-body">
+										<h5 class="card-title">Product Name</h5>
+										<p class="card-text">Product Description</p>
+										<a href="#" class="btn btn-outline-success w-100">Show</a>
+									</div>
+								</div>
+							</div>
+							<div class="col-6 col-md-3 p-1">
+								<div class="card">
+									<img src=img. class="w-100">
+									<div class="card-body">
+										<h5 class="card-title">Product Name</h5>
+										<p class="card-text">Product Description</p>
+										<a href="#" class="btn btn-outline-success w-100">Show</a>
+									</div>
+								</div>
+							</div>
+							<div class="col-6 col-md-3 p-1">
+								<div class="card">
+									<img src="img/4301.jpg" class="w-100">
+									<div class="card-body">
+										<h5 class="card-title">Product Name</h5>
+										<p class="card-text">Product Description</p>
+										<a href="#" class="btn btn-outline-success w-100">Show</a>
+									</div>
+								</div>
+							</div>
+							<div class="col-6 col-md-3 p-1">
+								<div class="card">
+									<img src="https://via.placeholder.com/300x250" class="w-100">
+									<div class="card-body">
+										<h5 class="card-title">Product Name</h5>
+										<p class="card-text">Product Description</p>
+										<a href="#" class="btn btn-outline-success w-100">Show</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<a class="carousel-control-prev" href="#carouselFourColumn"
+					role="button" data-slide="prev"> <span
+					class="carousel-control-prev-icon" aria-hidden="true"></span> <span
+					class="sr-only">Previous</span>
+				</a> <a class="carousel-control-next" href="#carouselFourColumn"
+					role="button" data-slide="next"> <span
+					class="carousel-control-next-icon" aria-hidden="true"></span> <span
+					class="sr-only">Next</span>
+				</a>
+			</div>
+		</div>
+	</section>
+	-->
+
+
+	<table class="table">
+		<thead class="thead-dark">
+			<tr>
+				<th>Titulo</th>
+				<th>Descripcion</th>
+				<th>Acciones</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="publicacion : ${publicaciones}">
+				<td th:text="${publicacion.titulo}"></td>
+				<td th:text="${publicacion.descripcion}"></td>
+				<td><a
+					th:href="@{/publicacion/actualizar(id=${publicacion.id})}"><i
+						class="fa fa-pencil"></i></a> - <a
+					th:href="@{/pulicacion/eliminar(id=${publicacion.id})}"><i
+						class="fa fa-trash"></i></a></td>
+
+			</tr>
+		</tbody>
+	</table>
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+		integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+		integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+		crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+		integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+		crossorigin="anonymous"></script>
+	<script type="text/javascript" src="../js/owl.carousel.min.js"></script>
+	<script type="text/javascript" src="/js/carrousel.js"></script>
+	<script>
+		$('div.carousel-item:first').addClass('active');
+	</script>
+</body>
 </html>
