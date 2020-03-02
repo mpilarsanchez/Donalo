@@ -75,7 +75,7 @@ font: bold 150% monospace;
 						<h2 class="display-4"  style=color:white;>Log In</h2>
             <form action="/logincheck" method="POST">
                <p th:if="${error != null}" th:text="${error}" style="color:red"></p>
-               <p th:if="${logout != null}" th:text="${logout}" style="color:green"></p>
+               <p th:if="${logout != null}" th:text="${logout}" style="color:white"></p>
 
                <label style=color:white;>E-Mail</label>
               <input type="email" class="form-control" name="username"/>
