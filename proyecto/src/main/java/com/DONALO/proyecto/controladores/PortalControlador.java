@@ -32,12 +32,7 @@ public class PortalControlador {
         
         return "home.html";
     }
-//	
-//	@GetMapping("/login")
-//    public String login(){
-//        
-//        return "login.html";
-//    }
+
     
 	 @PreAuthorize("hasAnyRole('ROLE_USUARIO_REGISTRADO')")
 	    @GetMapping("/inicio")

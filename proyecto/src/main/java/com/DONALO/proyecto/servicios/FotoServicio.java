@@ -1,5 +1,8 @@
 package com.DONALO.proyecto.servicios;
 
+import java.io.OutputStream;
+
+import javax.servlet.http.HttpServletResponse;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,12 +60,28 @@ public class FotoServicio {
         }
     }
         return null;
-        
-        
-        
+           
     }
+
 	
-	
-	
+//		   public void writeImageToRespose(Long id, HttpServletResponse response) {
+//		   
+//			   //store image in browser cache
+//		        response.setContentType("image/jpeg, image/jpg, image/png, image/gif");
+//		        response.setHeader("Cache-Control", "max-age=2628000");
+//
+//		        //obtaining bytes from DB
+//		        byte[] imageData = fotoRepositorio.getPhotoById(id);
+//
+//		        //Some conversion
+//		        //Maybe to base64 string or something else
+//		        //Pay attention to encoding (UTF-8, etc)
+//		       
+//		        //write result to http response
+//		        try (OutputStream out = response.getOutputStream()) {
+//		            out.write(convertedStringBytes);
+//		        }
+//          }	
 	
 }
+
