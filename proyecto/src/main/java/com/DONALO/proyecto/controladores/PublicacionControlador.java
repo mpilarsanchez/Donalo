@@ -42,6 +42,8 @@ public class PublicacionControlador {
 	@Autowired
 	FotoServicio fotoServicio;
 	
+	
+	
 	@PreAuthorize("hasAnyRole('ROLE_USUARIO_REGISTRADO')")
 	@GetMapping("/crear")
     public String crear(){
