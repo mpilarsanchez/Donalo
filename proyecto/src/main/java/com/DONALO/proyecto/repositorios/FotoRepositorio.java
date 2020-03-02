@@ -10,6 +10,6 @@ import com.DONALO.proyecto.entidades.Foto;
 @Repository("fotoRepositorio")
 public interface FotoRepositorio extends JpaRepository<Foto, String>{
 
-	byte[] getPhotoById(Long id);
+	
 
 }
