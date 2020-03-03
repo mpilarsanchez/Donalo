@@ -15,24 +15,28 @@
 	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
 	crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="css/home.css">
+<link rel="shortcut icon" 
+    href="https://i.ibb.co/3Yn1Q9X/favicon.png" 
+    type="image/png">
 
 <style>
 /* Este es para los elementos en general */
 .navbar-light .navbar-nav .nav-link {
-color: #b71c1c;
-font: bold 150% monospace;
+color:#b71c1c;
+font: Montserrat 150%;
 
 }
 /*  Este es para el elemento activo lo puedes omitir */
 .navbar-light .navbar-nav .active>.nav-link  {
- color: #b71c1c;
-font: bold 150% monospace;
+color:#b71c1c;
+font: Montserrat 150%;
 }
 </style>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-	<a class="navbar-brand" href="/"><img class="logo"
-		src="/img/logo.png"></a>
+  <img class="navbar-brand" 
+  src="https://fotos.subefotos.com/987390e9e8bcebd33c8a39765a9f637co.png"
+  >
 	<button class="navbar-toggler" type="button" data-toggle="collapse"
 		data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
 		aria-expanded="false" aria-label="Toggle navigation">
@@ -72,7 +76,7 @@ font: bold 150% monospace;
 				</div>
 				<div class="col-lg-6 order-lg-1">
 					<div class="p-5">
-						<h2 class="display-4"  style=color:white;>Log In</h2>
+						<h2 class="display-4"  style=color:white;>LogIn</h2>
             <form action="/logincheck" method="POST">
                <p th:if="${error != null}" th:text="${error}" style="color:red"></p>
                <p th:if="${logout != null}" th:text="${logout}" style="color:white"></p>
