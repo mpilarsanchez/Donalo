@@ -77,7 +77,11 @@ public class PublicacionServicio {
 		return publicaciones;
 	   }
 		
-	
+//	 public List<Publicacion> buscarPublicacionPorUsuario(String usuario_id ) {
+//		   List<Publicacion> publicaciones = publicacionRepositorio.buscarPublicacionPorUsuarioId(usuario_id);
+//		return publicaciones;
+//	   }
+		
 	
 	@Transactional
 	public void modificacionPublicacion (MultipartFile archivo,String id_Usuario,String descripcion, Seleccion seleccion) throws ErrorServicio{

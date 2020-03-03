@@ -53,6 +53,7 @@ public class PublicacionControlador {
     }
 	
 	
+	
 	@PreAuthorize("hasAnyRole('ROLE_USUARIO_REGISTRADO')")
 	@PostMapping("/publicar")
 	 public String publicar(ModelMap modelo, @RequestParam String titulo,@RequestParam String descripcion, MultipartFile archivo, @RequestParam String seleccion) throws ErrorServicio  {
@@ -74,6 +75,7 @@ public class PublicacionControlador {
 
 		return "redirect:/publicacion/detalle";
 	}
+	
 	
 	@GetMapping("/detalle")
     public String publicacion(){
@@ -107,5 +109,24 @@ public class PublicacionControlador {
              return "publicaciones.html";
 	}
 }
+	
+//	@GetMapping("/misPublicaciones")
+//	public String misPublicaciones(@RequestParam(required = false) String error, ModelMap modelo) {
+//
+//		 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+//	      Usuario usuario = usuarioRepositorio.buscarPorMail(auth.getName());	 
+//		  
+//	      List<Publicacion> publicaciones = publicacionServicio.buscarPublicacionPorUsuario(usuario.getId());
+//	      if ( publicaciones != null) {
+//	    	   modelo.put("publicaciones", publicaciones);
+//		        modelo.put("error", error);
+//		           
+//		        } else {
+//		        	System.out.println("Aun no tiene ninguna publicación");
+//		        }
+//		       
+//             return "publicaciones_usuario.html";
+//	}
+//}
 
 
