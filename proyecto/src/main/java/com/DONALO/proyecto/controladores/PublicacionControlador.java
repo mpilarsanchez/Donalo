@@ -84,11 +84,13 @@ public class PublicacionControlador {
     }
 	
 
-	
+
 	@GetMapping("/mensaje")
-	public String mensaje(Authentication usuarioLog,@RequestParam (name="idUsuario1") String idUsuario ) {
+	public String mensaje(ModelMap modelo ) {
 		
-		Optional<Usuario> usuario = usuarioRepositorio.findById(idUsuario);
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	      Usuario usuario = usuarioRepositorio.buscarPorMail(auth.getName());
+	    modelo.put("usuario", usuario);
 		
 		return "mensaje.html";
 	}
@@ -96,7 +98,12 @@ public class PublicacionControlador {
 	
 	@GetMapping("/publicaciones")
 	public String publicaciones(@RequestParam(required = false) String q, @RequestParam(required = false) String error, ModelMap modelo) {
-			 List<Publicacion> publicaciones ;
+			
+		     List<Publicacion> publicaciones ;
+			 
+			 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		      Usuario usuario = usuarioRepositorio.buscarPorMail(auth.getName());
+		      
 			 if (q != null) {
 		            publicaciones = publicacionServicio.buscarPublicacion(q);
 		        } else {
@@ -105,18 +112,23 @@ public class PublicacionControlador {
 		        
 		        modelo.put("q", q);
 		        modelo.put("publicaciones", publicaciones);
+		        modelo.put("usuario", usuario);
 		        modelo.put("error", error);
-             return "publicaciones.html";
+           
+		        return "publicaciones.html";
 	}
-}
+
 	
-//	@GetMapping("/misPublicaciones")
-//	public String misPublicaciones(@RequestParam(required = false) String error, ModelMap modelo) {
-//
-//		 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-//	      Usuario usuario = usuarioRepositorio.buscarPorMail(auth.getName());	 
-//		  
-//	      List<Publicacion> publicaciones = publicacionServicio.buscarPublicacionPorUsuario(usuario.getId());
+	@GetMapping("/misPublicaciones")
+	public String misPublicaciones(@RequestParam(required = false) String error, ModelMap modelo) {
+
+		 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	      Usuario usuario = usuarioRepositorio.buscarPorMail(auth.getName());	 
+		  
+	      List<Publicacion> publicaciones = publicacionServicio.buscarPublicacionPorUsuario(usuario.getId());
+	      modelo.put("publicaciones", publicaciones);
+          modelo.put("error", error);
+	      
 //	      if ( publicaciones != null) {
 //	    	   modelo.put("publicaciones", publicaciones);
 //		        modelo.put("error", error);
@@ -125,8 +137,8 @@ public class PublicacionControlador {
 //		        	System.out.println("Aun no tiene ninguna publicación");
 //		        }
 //		       
-//             return "publicaciones_usuario.html";
-//	}
-//}
+             return "publicaciones_usuario.html";
+	}
+}
 
 

@@ -53,16 +53,8 @@
 </header>
 
 <body>
-	<p th:if="${error != null}" th:text="${error}" style="color: red;"></p>
+	<!-- <p th:if="${error != null}" th:text="${error}" style="color: red;"></p>
 
-	 <form class="form-inline my-2 my-lg-0"
-		action="/publicacion/publicaciones" method="GET">
-		<input class="form-control mr-sm-2" type="search" placeholder="Buscar"
-			aria-label="Buscar" name="q" th:value="${q}">
-		<button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-			Buscar <i class="fa fa-search"></i>
-		</button>
-	</form>
 
 	<section class="vip-products">
 		<div class="publicaciones">
@@ -82,168 +74,6 @@
 
 
 
- <!--  	<section>
-		<div class="container">
-			<div class="col-xl-12">
-				<h2 class="text-center text-white">Carousel 4 Column Product
-					Slider</h2>
-			</div>
-
-			<div id="carouselFourColumn" class="carousel slide"
-				data-ride="carousel">
-				<ol class="carousel-indicators">
-					<li data-target="#carouselFourColumn" data-slide-to="0"
-						class="active"></li>
-					<li data-target="#carouselFourColumn" data-slide-to="1"></li>
-					<li data-target="#carouselFourColumn" data-slide-to="2"></li>
-				</ol>
-				<div class="carousel-inner" >
-					<div class="carousel-item" th:each="publicacion : ${publicaciones}">
-						<div class="row">
-							<div class="col-6 col-md-3 p-1">
-								<div class="card">
-									<img src="https://via.placeholder.com/300x250" class="w-100">
-									<div class="card-body">
-										<h5 class="card-title">Product Name</h5>
-										<p class="card-text">Product Description</p>
-										<a href="#" class="btn btn-outline-success w-100">Show</a>
-									</div>
-								</div>
-							</div>
-							<div class="col-6 col-md-3 p-1">
-								<div class="card">
-									<img src="https://via.placeholder.com/300x250" class="w-100">
-									<div class="card-body">
-										<h5 class="card-title">Product Name</h5>
-										<p class="card-text">Product Description</p>
-										<a href="#" class="btn btn-outline-success w-100">Show</a>
-									</div>
-								</div>
-							</div>
-							<div class="col-6 col-md-3 p-1">
-								<div class="card">
-									<img src="https://via.placeholder.com/300x250" class="w-100">
-									<div class="card-body">
-										<h5 class="card-title">Product Name</h5>
-										<p class="card-text">Product Description</p>
-										<a href="#" class="btn btn-outline-success w-100">Show</a>
-									</div>
-								</div>
-							</div>
-							<div class="col-6 col-md-3 p-1">
-								<div class="card">
-									<img src="https://via.placeholder.com/300x250" class="w-100">
-									<div class="card-body">
-										<h5 class="card-title">Product Name</h5>
-										<p class="card-text">Product Description</p>
-										<a href="#" class="btn btn-outline-success w-100">Show</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="carousel-item">
-						<div class="row">
-							<div class="col-6 col-md-3 p-1">
-								<div class="card">
-									<img src="https://via.placeholder.com/300x250" class="w-100">
-									<div class="card-body">
-										<h5 class="card-title">Product Name</h5>
-										<p class="card-text">Product Description</p>
-										<a href="#" class="btn btn-outline-success w-100">Show</a>
-									</div>
-								</div>
-							</div>
-							<div class="col-6 col-md-3 p-1">
-								<div class="card">
-									<img src="https://via.placeholder.com/300x250" class="w-100">
-									<div class="card-body">
-										<h5 class="card-title">Product Name</h5>
-										<p class="card-text">Product Description</p>
-										<a href="#" class="btn btn-outline-success w-100">Show</a>
-									</div>
-								</div>
-							</div>
-							<div class="col-6 col-md-3 p-1">
-								<div class="card">
-									<img src="https://via.placeholder.com/300x250" class="w-100">
-									<div class="card-body">
-										<h5 class="card-title">Product Name</h5>
-										<p class="card-text">Product Description</p>
-										<a href="#" class="btn btn-outline-success w-100">Show</a>
-									</div>
-								</div>
-							</div>
-							<div class="col-6 col-md-3 p-1">
-								<div class="card">
-									<img src="https://via.placeholder.com/300x250" class="w-100">
-									<div class="card-body">
-										<h5 class="card-title">Product Name</h5>
-										<p class="card-text">Product Description</p>
-										<a href="#" class="btn btn-outline-success w-100">Show</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="carousel-item">
-						<div class="row">
-							<div class="col-6 col-md-3 p-1">
-								<div class="card">
-									<img src="img." class="w-100">
-									<div class="card-body">
-										<h5 class="card-title">Product Name</h5>
-										<p class="card-text">Product Description</p>
-										<a href="#" class="btn btn-outline-success w-100">Show</a>
-									</div>
-								</div>
-							</div>
-							<div class="col-6 col-md-3 p-1">
-								<div class="card">
-									<img src=img. class="w-100">
-									<div class="card-body">
-										<h5 class="card-title">Product Name</h5>
-										<p class="card-text">Product Description</p>
-										<a href="#" class="btn btn-outline-success w-100">Show</a>
-									</div>
-								</div>
-							</div>
-							<div class="col-6 col-md-3 p-1">
-								<div class="card">
-									<img src="img/4301.jpg" class="w-100">
-									<div class="card-body">
-										<h5 class="card-title">Product Name</h5>
-										<p class="card-text">Product Description</p>
-										<a href="#" class="btn btn-outline-success w-100">Show</a>
-									</div>
-								</div>
-							</div>
-							<div class="col-6 col-md-3 p-1">
-								<div class="card">
-									<img src="https://via.placeholder.com/300x250" class="w-100">
-									<div class="card-body">
-										<h5 class="card-title">Product Name</h5>
-										<p class="card-text">Product Description</p>
-										<a href="#" class="btn btn-outline-success w-100">Show</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<a class="carousel-control-prev" href="#carouselFourColumn"
-					role="button" data-slide="prev"> <span
-					class="carousel-control-prev-icon" aria-hidden="true"></span> <span
-					class="sr-only">Previous</span>
-				</a> <a class="carousel-control-next" href="#carouselFourColumn"
-					role="button" data-slide="next"> <span
-					class="carousel-control-next-icon" aria-hidden="true"></span> <span
-					class="sr-only">Next</span>
-				</a>
-			</div>
-		</div>
-	</section>
-	-->
 
 
 	<table class="table">
@@ -266,7 +96,7 @@
 
 			</tr>
 		</tbody>
-	</table>
+	</table> -->
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
@@ -286,8 +116,6 @@
 		crossorigin="anonymous"></script>
 	<script type="text/javascript" src="../js/owl.carousel.min.js"></script>
 	<script type="text/javascript" src="/js/carrousel.js"></script>
-	<script>
-		$('div.carousel-item:first').addClass('active');
-	</script>
+
 </body>
 </html>>
