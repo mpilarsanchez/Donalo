@@ -2,13 +2,11 @@ package com.DONALO.proyecto.controladores;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.view.RedirectView;
@@ -19,17 +17,14 @@ import com.DONALO.proyecto.repositorios.UsuarioRepositorio;
 import com.DONALO.proyecto.servicios.UsuarioServicio;
 
 @Controller
-
 public class EditarperfilControlador {
-@Autowired
-public UsuarioRepositorio repo;
+
+	@Autowired
+     public UsuarioRepositorio repo;
 
 
-@Autowired
-private UsuarioServicio servicio;
-
-
-
+	@Autowired
+	private UsuarioServicio servicio;
 
 
 
@@ -39,46 +34,19 @@ public String cargar(ModelMap modelo) {
 	 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
     Usuario usuario = repo.buscarPorMail(auth.getName());
 	
-	modelo.put("nombreviejo", usuario.getNombre());
-	modelo.put("apellidoviejo", usuario.getApellido());
-	modelo.put("mailviejo", usuario.getMail());
+	modelo.put("nombre", usuario.getNombre());
+	modelo.put("apellido", usuario.getApellido());
+	modelo.put("mail", usuario.getMail());
+	modelo.put("clave1", usuario.getClave());
+	modelo.put("clave2", usuario.getClave());
 
 	return "editar_perfil.html";
 
 }
 
-//@PostMapping("")
-//public String editar( ModelMap modelo, @RequestParam String nombre, @RequestParam String apellido, @RequestParam String mail, @RequestParam String clave1, @RequestParam String clave2, MultipartFile archivo,  @RequestParam String username){
-//	
-//	System.out.println("Entre al metodo bajo mapping editar");
-//	
-//	 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-//     Usuario usuario = repo.buscarPorMail(auth.getName());
-//	
-//	
-//	   try {	        servicio.modificacionUsuario(archivo, usuario.getId() , nombre, apellido, mail, clave1, clave2);
-//	    } catch (ErrorServicio ex) {
-//	    	System.out.println("________________________________");
-//	    	System.out.println("ERROR ACA");
-//    	ex.printStackTrace();
-//        modelo.put("error", ex.getMessage());
-//	        modelo.put("nombre", nombre);
-//	        modelo.put("apellido", apellido);
-//	        modelo.put("mail", mail);
-//	        modelo.put("clave1", clave1);
-//	        modelo.put("clave2", clave2);
-//	        modelo.put("username", username);
-//	        return "editar_perfil.html";
-//	    }
-//	    
-//	   return "perfil.html";
-//	}
-
 
 @PostMapping("editar_perfil/editar")
 public RedirectView editar( ModelMap modelo, @RequestParam String nombre, @RequestParam String apellido, @RequestParam String mail, @RequestParam String clave1, @RequestParam String clave2, MultipartFile archivo){
-	
-	System.out.println("Entre al metodo bajo mapping editar");
 	
 	 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
    Usuario usuario = repo.buscarPorMail(auth.getName());

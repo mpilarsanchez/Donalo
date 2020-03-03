@@ -6,12 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 
-    <title>Donalo -Producto</title>
+    <title>Donalo Producto</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="/css/home.css">
     
+<style>
+/* Este es para los elementos en general */
+.navbar-light .navbar-nav .nav-link {
+color:#b71c1c;
+font: bold 150% monospace;
 
+}
+/*  Este es para el elemento activo lo puedes omitir */
+.navbar-light .navbar-nav .active>.nav-link  {
+color:#b71c1c;
+font: bold 150% monospace;
+}
+</style>
     </head>
   <!-- Just an image -->
   <header>
@@ -25,20 +37,22 @@
       <li class="nav-item active">
         <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/registro/formulario">Registro</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/login">Log In</a>
-      </li>
+<!--       <li class="nav-item"> -->
+<!--         <a class="nav-link" href="/registro/formulario">Registro</a> -->
+<!--       </li> -->
+<!--       <li class="nav-item"> -->
+<!--         <a class="nav-link" href="/login">LogIn</a> -->
+<!--       </li> -->
+<li class="nav-item">
+             <a class="nav-link" href="/perfil">Perfil</a>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          menu link
+          
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="#">Cerrar sesión</a>
-          <a class="dropdown-item" href="#">Petición</a>
-          <a class="dropdown-item" href="#">Donar</a>
+          <a class="dropdown-item" href="#"; style=color:#b71c1c;>Cerrar sesión</a>
+          <a class="dropdown-item" href="#"; style=color:#b71c1c;>Petición</a>
+          <a class="dropdown-item" href="#"; style=color:#b71c1c;>Donar</a>
         </div>
       </li>
     </ul>
@@ -59,8 +73,8 @@
         <div class="row ">   
         <div class="card-text-center">
          <div class="p-5">
-          <h1 class="producto"> Producto </h1>
-            <h2 class="card-text display-4" th:text="${titulo}" >Nombre </h2> 
+          <h1 class="producto" style=color:#b71c1c;> Producto </h1>
+            <h2 class="card-text display-4" th:text="${titulo}" style=color:white;>Nombre </h2> 
             <p class="card-text" th:text="${descripcion}" ></p>
           </div>
       </div>
@@ -70,11 +84,11 @@
 </div>
   </section>
       
-            <h2 class="descripcion" th:text="${descripcion}">Descripción del Producto</h2> 
+            <h2 class="descripcion" th:text="${descripcion}" style=color:#b71c1c;>Descripción del Producto</h2> 
 
             <p> En este espacio se va a recibir el id del producto con la descripción hecha por el usuario  </p> 
             
-               <a href="/publicacion/mensaje"><button class="contactar" type="button" > Contactar </button></a> 
+               <a href="/publicacion/mensaje"><button class="contactar" type="button" style=color:#b71c1c;> Contactar </button></a> 
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
