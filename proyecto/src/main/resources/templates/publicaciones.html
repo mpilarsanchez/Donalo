@@ -55,7 +55,9 @@
 <body>
 	<p th:if="${error != null}" th:text="${error}" style="color: red;"></p>
 
-	<!-- <form class="form-inline my-2 my-lg-0"
+
+<!-- Volver a comentar --> 
+	 <!-- <form class="form-inline my-2 my-lg-0"
 		action="/publicacion/publicaciones" method="GET">
 		<input class="form-control mr-sm-2" type="search" placeholder="Buscar"
 			aria-label="Buscar" name="q" th:value="${q}">
@@ -73,13 +75,18 @@
 						Name</h5>
 					<p class="card-text" th:text="${publicacion.descripcion}">Product
 						Description</p>
+						
+						 <form class="form-inline my-2 my-lg-0" action="/publicacion/mensaje" method="GET"> 
+						<input type="hidden" name="idUsuario1" th:value="${publicacion.usuario.id}">
+						    <a th:href ="@{/publicacion/mensaje}"><button class="contactar" type="button" style=color:#b71c1c;> Contactar </button></a>
+						    
 					<a href="#" class="btn btn-outline-success w-100">Show</a>
 				</div>
 			</div>
 		</div>
-	</section> -->
+	</section>  -->
 
-
+ 
 
 
 	<section>

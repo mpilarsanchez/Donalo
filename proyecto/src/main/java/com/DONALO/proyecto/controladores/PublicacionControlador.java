@@ -1,6 +1,7 @@
 package com.DONALO.proyecto.controladores;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -83,7 +84,10 @@ public class PublicacionControlador {
 
 	
 	@GetMapping("/mensaje")
-	public String mensaje() {
+	public String mensaje(Authentication usuarioLog,@RequestParam (name="idUsuario1") String idUsuario ) {
+		
+		Optional<Usuario> usuario = usuarioRepositorio.findById(idUsuario);
+		
 		return "mensaje.html";
 	}
 	
