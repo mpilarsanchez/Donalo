@@ -37,6 +37,16 @@ font: Montserrat 150%;
   </button>
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav" ml-auto mt-lg-0>
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" 
+        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">          
+          <a class="dropdown-item" href="#"; style=color:#b71c1c;>Petición</a>
+          <a class="dropdown-item" href="#"; style=color:#b71c1c;>Donar</a>
+          <a class="dropdown-item" href="#"; style=color:#b71c1c;>Cerrar sesión</a>          
+        </div>
+      </li>
       <li class="nav-item active">
         <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
       </li>
@@ -46,16 +56,7 @@ font: Montserrat 150%;
 <!--       <li class="nav-item"> -->
 <!--         <a class="nav-link" href="/login">Log In</a> -->
 <!--       </li> -->
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" 
-        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="#"; style=color:#b71c1c;>Cerrar sesión</a>
-          <a class="dropdown-item" href="#"; style=color:#b71c1c;>Petición</a>
-          <a class="dropdown-item" href="#"; style=color:#b71c1c;>Donar</a>
-        </div>
-      </li>
+      
     </ul>
   </div>
 </nav>
@@ -66,6 +67,8 @@ font: Montserrat 150%;
 </header>
 <body>
  <section>
+ 
+            <br></br>
     <div class="container">
       <div class="row align-items-center">
         <div class="card hovercard text-center">
@@ -89,30 +92,31 @@ font: Montserrat 150%;
           </div>
       </div>
     </div>
-</div>
-</div>
-</div>
-  </section>
-
-<section>
- <div class="container">
-   
+    <div class="container">   
     <div class="row align-items-center">
-        <div class="col-lg-12 text-right"><a href="/publicacion/crear"><button type="button" class="btn btn-info btn-block">Publicar</button></a></div>
+        <div class="col-lg-12 text-right"><a href="/publicacion/crear"><button 
+        type="button" class="btn btn-primary">Publicar</button></a></div>
     <div class="row">
-            <br></br>
         </div>
 
     </div>
     <div class="row align-items-center">
-        <div class="col-lg-12 text-right"><a href="editar_perfil"><button type="button" href="/editar_perfil" class="btn btn-dark btn-block">Editar Perfil</button></a></div>
+        <div class="col-lg-12 text-right">
+        <a href="editar_perfil">
+        <button type="button" href="/editar_perfil" class="btn btn-primary">
+        Editar Perfil</button></a></div>
     </div>
   
-
     <div class="row align-items-center">
-        <div class="col-lg-12 text-right"><a href="/publicacion/misPublicaciones"><button type="button" class="btn btn-dark btn-block">Mis publicaciones</button></a></div>
+        <div class="col-lg-12 text-right">
+        <a href="/publicacion/misPublicaciones">
+        <button type="button" class="btn btn-primary ">Mis publicaciones</button></a></div>
     </div>
     </div>
+</div>
+</div>
+</div>
+ 
 
 </section>
 
