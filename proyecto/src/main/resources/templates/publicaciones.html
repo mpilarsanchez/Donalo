@@ -84,7 +84,7 @@
 						   <a th:href ="@{/publicacion/mensaje}"><button class="contactar" type="button" style=color:#b71c1c;> Contactar </button></a>-->
 				    
 
-					<a href="/publicacion/detalle" class="btn btn-outline-success w-100">Ver Publicacion</a>
+					<a th:href="@{/publicacion/detalle(id=${publicacion.id})}" class="btn btn-outline-success w-100">Ver Publicacion</a>
 				</div>
 			</div>
 		</div>

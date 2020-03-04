@@ -82,6 +82,12 @@ public class PublicacionServicio {
 		List<Publicacion> publicaciones = publicacionRepositorio.findByUsuario(usuario_id);
 		return publicaciones;
 	}
+	
+	@Transactional
+	public Publicacion buscarPublicacionId(String id) {
+		Publicacion publicacion = publicacionRepositorio.findById(id).get();
+		return publicacion;
+	}
 
 	@Transactional
 	public void modificacionPublicacion(MultipartFile archivo, String id_Usuario, String descripcion,
