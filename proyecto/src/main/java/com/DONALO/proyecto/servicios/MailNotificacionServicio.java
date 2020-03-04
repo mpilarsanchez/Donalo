@@ -8,36 +8,22 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class MailNotificacionServicio {
-@Autowired(required=false)
-private JavaMailSender mailSender;
-    
-
+	@Autowired(required = false)
+	private JavaMailSender mailSender;
 
 //Async o Asincrono lo que hace es no esperar que se ejecute el mail
 // Sino que lo ejecuta en un hilo paralelo (Hace que el usuario tenga una respuesta
 // inmediate.
- @Async   
-public void enviar(String cuerpo,String titulo,String mail) {
-    SimpleMailMessage mensaje = new SimpleMailMessage();
-    mensaje.setTo(mail);
-    mensaje.setFrom("noreply@donalo.com");
-    mensaje.setSubject(titulo);
-    mensaje.setText(cuerpo);
-    
-    
-   mailSender.send(mensaje);
-    
-}   
- 
- 
+	@Async
+	public void enviar(String cuerpo, String titulo, String mail) {
+		SimpleMailMessage mensaje = new SimpleMailMessage();
+		mensaje.setTo(mail);
+		mensaje.setFrom("noreply@donalo.com");
+		mensaje.setSubject(titulo);
+		mensaje.setText(cuerpo);
 
- 
- 
- 
- 
- 
- 
- 
- 
- 
+		mailSender.send(mensaje);
+
+	}
+
 }

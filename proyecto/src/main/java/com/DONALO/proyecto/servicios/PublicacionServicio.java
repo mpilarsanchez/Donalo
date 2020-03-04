@@ -34,7 +34,7 @@ public class PublicacionServicio {
 	private PublicacionRepositorio publicacionRepositorio;
 
 	@Transactional
-	public void altaPublicacion(String titulo, String descripcion, Usuario usuario, MultipartFile archivo,
+	public Publicacion altaPublicacion(String titulo, String descripcion, Usuario usuario, MultipartFile archivo,
 			String seleccion) throws ErrorServicio {
 
 		validacion(titulo, descripcion);
@@ -50,8 +50,10 @@ public class PublicacionServicio {
 		publicacion.setFoto(foto);
 
 		publicacionRepositorio.save(publicacion);
+		return publicacion;
 
 	}
+
 
 	@Transactional
 	public void validacion(String titulo, String descripcion) throws ErrorServicio {

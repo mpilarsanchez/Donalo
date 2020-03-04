@@ -1,10 +1,6 @@
 package com.DONALO.proyecto.controladores;
 
 import java.util.List;
-import java.util.Optional;
-
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -12,7 +8,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -53,16 +48,21 @@ public class PublicacionControlador {
     }
 	
 	
-	
 	@PreAuthorize("hasAnyRole('ROLE_USUARIO_REGISTRADO')")
 	@PostMapping("/publicar")
 	 public String publicar(ModelMap modelo, @RequestParam String titulo,@RequestParam String descripcion, MultipartFile archivo, @RequestParam String seleccion) throws ErrorServicio  {
-      Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+      
+	 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
       Usuario usuario = usuarioRepositorio.buscarPorMail(auth.getName());
+      
+      Publicacion publicacion = new Publicacion();
 		
-		try {
-			publicacionServicio.altaPublicacion(titulo,descripcion, usuario, archivo, seleccion);
+      try {
+			publicacion = publicacionServicio.altaPublicacion(titulo,descripcion, usuario, archivo, seleccion);
+			
 		} catch (Exception ex) {
+			System.out.println("ENTRE AL CATCH");
+			ex.printStackTrace();
 			modelo.put("error", ex.getMessage());
 			modelo.put("titulo", titulo);
 	        modelo.put("descripcion", descripcion);
@@ -72,10 +72,15 @@ public class PublicacionControlador {
 		}
 		modelo.put("titulo", titulo);
         modelo.put("descripcion", descripcion);
+        modelo.put("usuario", usuario);
+        modelo.put("archivo", archivo);
+        modelo.put("seleccion", seleccion);
+  
 
-		return "redirect:/publicacion/detalle";
+		//return "publicacion.html";
+        return "redirect:/publicacion/detalle?id=" + publicacion.getId();
 	}
-	
+
 	
 	@GetMapping("/detalle")
     public String publicacion(@RequestParam String id, @RequestParam(required = false) String error, ModelMap modelo) {

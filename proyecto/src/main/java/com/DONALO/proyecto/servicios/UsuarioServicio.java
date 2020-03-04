@@ -27,7 +27,7 @@ import com.DONALO.proyecto.errores.ErrorServicio;
 import com.DONALO.proyecto.repositorios.UsuarioRepositorio;
 
 @Service
-public class UsuarioServicio implements UserDetailsService{
+public class UsuarioServicio implements UserDetailsService {
 
 	@Autowired
 	private UsuarioRepositorio usuarioRepositorio;
@@ -36,7 +36,7 @@ public class UsuarioServicio implements UserDetailsService{
 	private FotoServicio fotoServicio;
 
 	@Transactional
-	public void altaUsuario(String nombre, String apellido, String mail, String clave, String clave2,
+	public Usuario altaUsuario(String nombre, String apellido, String mail, String clave, String clave2,
 			MultipartFile archivo) throws ErrorServicio {
 
 		validar(nombre, apellido, mail, clave, clave2);
@@ -46,7 +46,6 @@ public class UsuarioServicio implements UserDetailsService{
 		usuario.setNombre(nombre);
 		usuario.setApellido(apellido);
 		usuario.setMail(mail);
-		
 
 		// Seguridad de la clave
 		String encriptada = new BCryptPasswordEncoder().encode(clave);
@@ -57,6 +56,7 @@ public class UsuarioServicio implements UserDetailsService{
 		usuario.setFoto(foto);
 
 		usuarioRepositorio.save(usuario);
+		return usuario;
 
 	}
 
@@ -98,7 +98,7 @@ public class UsuarioServicio implements UserDetailsService{
 			usuario.setNombre(nombre);
 			usuario.setApellido(apellido);
 			usuario.setMail(mail);
-		
+
 			String encriptada = new BCryptPasswordEncoder().encode(clave);
 			usuario.setClave(encriptada);
 
@@ -133,30 +133,28 @@ public class UsuarioServicio implements UserDetailsService{
 
 	}
 
-	
 	@Override
-    public UserDetails loadUserByUsername(String mail) throws UsernameNotFoundException {
-        Usuario usuario = usuarioRepositorio.buscarPorMail(mail);
-        if(usuario != null){
-            
-            List<GrantedAuthority> permisos = new ArrayList<>();
-            
-            GrantedAuthority p1 = new SimpleGrantedAuthority("ROLE_USUARIO_REGISTRADO");
-            permisos.add(p1);
-            
-            ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
-            HttpSession session = attr.getRequest().getSession(true); 
-            session.setAttribute("usuariosession", usuario);
+	public UserDetails loadUserByUsername(String mail) throws UsernameNotFoundException {
+		Usuario usuario = usuarioRepositorio.buscarPorMail(mail);
+		if (usuario != null) {
 
-            User user = new User(usuario.getMail(), usuario.getClave(), permisos);
-            return user;
-        } else {
-            return null;
-        }
-	}
-	}
+			List<GrantedAuthority> permisos = new ArrayList<>();
 
-	
+			GrantedAuthority p1 = new SimpleGrantedAuthority("ROLE_USUARIO_REGISTRADO");
+			permisos.add(p1);
+
+			ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+			HttpSession session = attr.getRequest().getSession(true);
+			session.setAttribute("usuariosession", usuario);
+
+			User user = new User(usuario.getMail(), usuario.getClave(), permisos);
+			return user;
+		} else {
+			return null;
+		}
+	}
+}
+
 //	@override
 //	public userdetails loaduserbyusername(string id) throws usernamenotfoundexception{
 //		
@@ -181,9 +179,3 @@ public class UsuarioServicio implements UserDetailsService{
 //	}
 //	
 //}
-
-
-
-
-
-
