@@ -117,8 +117,8 @@ public class PublicacionControlador {
 			
 		     List<Publicacion> publicaciones ;
 			 
-			 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		      Usuario usuario = usuarioRepositorio.buscarPorMail(auth.getName());
+//			 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+//		      Usuario usuario = usuarioRepositorio.buscarPorMail(auth.getName());
 		      
 			 if (q != null) {
 		            publicaciones = publicacionServicio.buscarPublicacion(q);
@@ -128,7 +128,7 @@ public class PublicacionControlador {
 		        
 		        modelo.put("q", q);
 		        modelo.put("publicaciones", publicaciones);
-		        modelo.put("usuario", usuario);
+		 //       modelo.put("usuario", usuario);
 		        modelo.put("error", error);
            
 		        return "publicaciones.html";

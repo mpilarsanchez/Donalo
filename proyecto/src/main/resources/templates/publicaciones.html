@@ -105,9 +105,6 @@ max-width: 350px;
 						Name</h5>
 					<p class="card-text" th:text="${publicacion.descripcion}" style=color:#b71c1c;>Product
 						Description</p>
-						
-					  <form class="form-inline my-2 my-lg-0" action="/publicacion/mensaje" method="GET"> 
-							  <input type="hidden" name="idUsuario1" th:value="${usuario.id}">
 						   
 					<a th:href="@{/publicacion/detalle(id=${publicacion.id})}" class="btn btn-outline-success w-100">Ver Publicacion</a>
 				</div>
