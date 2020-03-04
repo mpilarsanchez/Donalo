@@ -78,11 +78,22 @@ public class PublicacionControlador {
 	
 	
 	@GetMapping("/detalle")
-    public String publicacion(){
-        
-        return "publicacion.html";
-    }
-	
+    public String publicacion(@RequestParam String id, @RequestParam(required = false) String error, ModelMap modelo) {
+			
+		     Publicacion publicacion = publicacionServicio.buscarPublicacionId(id);
+			 
+			 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		      Usuario usuario = usuarioRepositorio.buscarPorMail(auth.getName());
+		         
+		        
+		        modelo.put("publicacion", publicacion);
+		        modelo.put("usuario", usuario);
+		        modelo.put("error", error);
+          
+		        return "publicacion.html";
+	}
+    
+    
 
 
 	@GetMapping("/mensaje")

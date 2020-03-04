@@ -44,6 +44,7 @@ font: bold 150% monospace;
 <!--         <a class="nav-link" href="/login">LogIn</a> -->
 <!--       </li> -->
 <li class="nav-item">
+
              <a class="nav-link" href="/perfil">Perfil</a>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -74,8 +75,11 @@ font: bold 150% monospace;
         <div class="card-text-center">
          <div class="p-5">
           <h1 class="producto" style=color:#b71c1c;> Producto </h1>
-            <h2 class="card-text display-4" th:text="${titulo}" style=color:white;>Nombre </h2> 
-            <p class="card-text" th:text="${descripcion}" ></p>
+          <h5 class="card-title" th:text="${publicacion.titulo}">Product
+						Name</h5>
+					<p class="card-text" th:text="${publicacion.descripcion}">Product
+						Description</p>
+           
           </div>
       </div>
     </div>
@@ -83,11 +87,8 @@ font: bold 150% monospace;
 </div>
 </div>
   </section>
-      
-            <h2 class="descripcion" th:text="${descripcion}" style=color:#b71c1c;>Descripción del Producto</h2> 
-
-            <p> En este espacio se va a recibir el id del producto con la descripción hecha por el usuario  </p> 
-            
+      <img th:src="@{/img/__${publicacion.foto.id}__}" class="w-100">
+					
                <a href="/publicacion/mensaje"><button class="contactar" type="button" style=color:#b71c1c;> Contactar </button></a> 
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
