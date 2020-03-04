@@ -74,7 +74,7 @@ font: Montserrat 150%;
 				</div>
 				<div class="col-lg-6 order-lg-1">
 					<div class="p-5">
-						<h2 class="display-4"style=color:white;>Registrate!</h2>
+						<h2 class="display-4"style=color:#b71c1c;>Registrate!</h2>
 						<form action="/registro/registrar" method="POST"
 							enctype="multipart/form-data">
 							<p th:if="${error != null}" th:text="${error}"
@@ -82,22 +82,22 @@ font: Montserrat 150%;
 						
 						
 						
-							<label style=color:white;>Nombre</label> 
+							<label style=color:#b71c1c;>Nombre</label> 
 							<input type="text" class="form-control" name="nombre" th:value="${nombre}" /> <br/> 
 							
-							<label style=color:white;>Apellido</label>
+							<label style=color:#b71c1c;>Apellido</label>
 							<input type="text" class="form-control" name="apellido"	th:value="${apellido}" /> <br/> 
 							
-							<label style=color:white;>E-Mail</label> 
+							<label style=color:#b71c1c;>E-Mail</label> 
 							<input type="email" class="form-control" name="mail" th:value="${mail}" /><br/> 
 							
-							<label style=color:white;>Foto</label> 
+							<label style=color:#b71c1c;>Foto</label> 
 							<input type="file"class="form-control" name="archivo" /> <br /> 
 							
-							<label style=color:white;>Clave</label>
+							<label style=color:#b71c1c;>Clave</label>
 							<input type="password" class="form-control" name="clave1" th:value="${clave1}" /><br/> 
 							
-							<label style=color:white;>Repetir Clave</label> 
+							<label style=color:#b71c1c;>Repetir Clave</label> 
 							<input type="password" class="form-control" name="clave2"th:value="${clave2}" /><br/>
 							
 							<button type="submit" class="btn btn-primary" >Registrarme</button>

@@ -1,6 +1,7 @@
 
 body{
-  background-color: #b71c1c;
+  background-color: #f2f2f2;
+  color:#b71c1c;
 }
 
 img.navbar-brand{
@@ -9,7 +10,7 @@ img.navbar-brand{
 
 ul.navbar-nav{
 	color:#b71c1c;
-	margin-left:90%;
+	margin-left:auto;
 	font: Montserrat 150%;
 		
 }
@@ -38,3 +39,23 @@ ul.navbar-nav{
     width: 50px;
     height: 50px;
 }
+
+.btn-primary{
+	width:100%;
+	color:#b71c1c;
+    border-color:#b71c1c;
+    background:#f2f2f2;}
+
+.btn-primary:hover{
+    background:#b71c1c;
+    color:#f2f2f2;
+    border-color:#b71c1c;} 
+    
+.btn-primary2{
+color:#b71c1c;
+    border-color:#b71c1c;
+    background:#f2f2f2;}
+.btn-primary2:hover{
+    background:#b71c1c;
+    color:#f2f2f2;
+    border-color:#b71c1c;}
