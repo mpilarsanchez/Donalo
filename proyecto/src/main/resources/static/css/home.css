@@ -3,31 +3,35 @@ body{
   background-color: #b71c1c;
 }
 
-img.logo{
-	width: 60%;
+img.navbar-brand{
+	width: 10%;
 }
 
 ul.navbar-nav{
-	margin-left:80%;
+	color:#b71c1c;
+	margin-left:90%;
+	font: Montserrat 150%;
+		
 }
 
 .carousel .carousel-item {
     width: 100%;
-    height: 87.5vh;
+    height: 90.5vh;
     background-size: cover;
     background-position: center;
 }
 
 .carousel .carousel-item:first-of-type {
-    background-image: url("https://via.placeholder.com/300.png/f43347/f43347");
+    background-image: url("https://fotos.subefotos.com/02c6b9ed2f874b2e8458765d5e11caddo.jpg");
+
 }
 
 .carousel .carousel-item:nth-of-type(2) {
-    background-image: url("http://s9.favim.com/orig/130806/flower-flowers-photography-pink-Favim.com-833641.jpg");
+    background-image: url("https://fotos.subefotos.com/e1d38e25f15cd8e05db2569d8adfdcdbo.jpg");
 }
 
 .carousel .carousel-item:last-of-type {
-    background-image: url("https://4.bp.blogspot.com/-pxMLcrD3N7I/UjAMNkqM43I/AAAAAAAAABQ/2-etadUS_48/s640/flowers.jpg");
+    background-image: url("https://fotos.subefotos.com/2c350f61335e78d583567a697d079bbfo.jpg");
 }
 
 .carousel-control-prev-icon, .carousel-control-next-icon {
