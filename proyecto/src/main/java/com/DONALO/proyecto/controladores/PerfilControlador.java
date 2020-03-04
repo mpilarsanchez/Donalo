@@ -1,7 +1,5 @@
 package com.DONALO.proyecto.controladores;
 
-import java.io.File;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -26,7 +24,7 @@ public String perfil(ModelMap model) {
 	
 
 	 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-      Usuario usuario = repo.buscarPorMail(auth.getName());
+     Usuario usuario = repo.buscarPorMail(auth.getName());
 	
       model.put("usuario", usuario);
 		model.put("nombre", usuario.getNombre());
