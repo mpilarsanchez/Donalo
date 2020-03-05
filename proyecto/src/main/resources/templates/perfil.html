@@ -12,21 +12,6 @@
     <link rel="stylesheet" type="text/css" href="/css/home.css">
     <link rel="shortcut icon"  href="https://i.ibb.co/3Yn1Q9X/favicon.png" type="image/png">
     
-    
-    
-<style>
-/* Este es para los elementos en general */
-.navbar-light .navbar-nav .nav-link {
-color:#b71c1c;
-font: Montserrat 150%;
-
-}
-/*  Este es para el elemento activo lo puedes omitir */
-.navbar-light .navbar-nav .active>.nav-link  {
-color:#b71c1c;
-font: Montserrat 150%;
-}
-</style>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <img class="navbar-brand" src="https://fotos.subefotos.com/987390e9e8bcebd33c8a39765a9f637co.png">
      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,9 +19,7 @@ font: Montserrat 150%;
      </button>
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav" ml-auto mt-lg-0>
-          <li class="nav-item active">
-            <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-          </li>
+          
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> </a>      
         			<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -45,6 +28,12 @@ font: Montserrat 150%;
                         <a class="dropdown-item" href="/publicacion/publicaciones"; style=color:#b71c1c;>Ver Donaciones</a>
         			</div>
       			</li>
+      			<li class="nav-item"><a class="nav-link" href="/publicacion/publicaciones">Publicaciones</a>
+			</li>
+          <li class="nav-item active">
+            <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+          </li>
+          
    		  </ul>
   	  </div>
   </nav>
@@ -83,12 +72,11 @@ font: Montserrat 150%;
     </div>  
     </div>
     <div class="row align-items-center">
-        <div class="col-lg-12 text-right">
-        <a href="editar_perfil">
-        <button type="button" href="/editar_perfil" class="btn btn-primary"> Editar Perfil</button></a>
+      <div class="col-lg-12 text-right">
+        <a href="/mismensaje">
+        <button type="button" class="btn btn-primary ">Mis mensajes</button></a>
     </div>
-     </div>
-  
+    </div>
     <div class="row align-items-center">
       <div class="col-lg-12 text-right">
         <a href="/publicacion/misPublicaciones">
@@ -97,12 +85,18 @@ font: Montserrat 150%;
     </div>
     <div class="row align-items-center">
         <div class="col-lg-12 text-right">
-        <a href="/publicacion/misPublicaciones"><i class="fa fa-trash">
-        <button type="button" class="btn btn-primary ">Eliminar Cuenta</button></i></a>
+        <a href="editar_perfil">
+        <button type="button" href="/editar_perfil" class="btn btn-primary"> Editar Perfil</button></a>
+    </div>
+     </div>
+    <div class="row align-items-center">
+        <div class="col-lg-12 text-right">
+        <a href="/publicacion/misPublicaciones">
+        <button type="button" class="btn btn-primary ">Eliminar Cuenta</button></a>
     </div>
     </div>
    
-</div>
+
 </div>
 </div>
  

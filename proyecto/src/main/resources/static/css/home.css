@@ -3,6 +3,9 @@ body{
   background-color: #f2f2f2;
   color:#b71c1c;
 }
+.text-center{
+	color:#b71c1c;
+}
 
 img.navbar-brand{
 	width: 10%;
@@ -11,8 +14,17 @@ img.navbar-brand{
 ul.navbar-nav{
 	color:#b71c1c;
 	margin-left:auto;
-	font: Montserrat 150%;
-		
+	font: Montserrat 150%;		
+}
+
+.navbar-light .navbar-nav .nav-link {
+color:#b71c1c;
+font: Montserrat 150%;
+}
+
+.navbar-light .navbar-nav .active>.nav-link  {
+color:#b71c1c;
+font: Montserrat 150%;
 }
 
 .carousel .carousel-item {
