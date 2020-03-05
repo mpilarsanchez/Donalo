@@ -54,7 +54,7 @@ public class RegistroControlador {
 		modelo.put("descripcion", "Tu usuario fue registrado de manera satisfactoria");
 //
 //		return "redirect:/perfil?id=" + nuevoUsuario.getId();
-		return "/inicio";
+		return "redirect:/inicio";
 	}
 
 }
