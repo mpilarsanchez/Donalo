@@ -47,10 +47,11 @@
         <div class="card hovercard text-center">
             <div class="cardheader">
         <div class="col-lg-12 order-lg-2">
-          <div class="avatar">
-             <img class="img-fluid rounded-circle" src="/img/perfil.jpeg" alt=""> 
-           <img class="img-fluid rounded-circle w-100" th:src="@{/img/__${usuario.foto.id}__}"> 
-          </div>
+        <img class="img-fluid rounded-circle w-100" th:src="@{/img/__${usuario.foto.id}__}" alt="imagen de perfil"> 
+         <!--  <div th:switch=${esnulo} class="avatar">   
+            <img th:case="'no'" class="img-fluid rounded-circle w-100" th:src="@{/img/__${usuario.foto.id}__}" alt="imagen de perfil"> 
+           <img th:case="'si'" class="img-fluid rounded-circle w-100" src="/img/perfil.jpeg" alt="imagen perfil defecto"> 
+          </div> -->
         </div>
      <div class="row ">   
         <div class="card-text-center">
