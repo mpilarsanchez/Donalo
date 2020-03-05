@@ -9,16 +9,10 @@
 
 <title>Donalo *publicaciones</title>
 <!-- Bootstrap CSS -->
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-	crossorigin="anonymous">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="/css/publicaciones.css">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
- <link rel="shortcut icon" 
-    href="https://i.ibb.co/3Yn1Q9X/favicon.png" 
-    type="image/png">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+ <link rel="shortcut icon"  href="https://i.ibb.co/3Yn1Q9X/favicon.png" type="image/png">
     
 <style>
 /* Este es para los elementos en general */
@@ -83,17 +77,12 @@ max-width: 350px;
 <body>
 	<p th:if="${error != null}" th:text="${error}" style="color: red;"></p>
 
-
-
-
-	 <form class="form-inline my-2 my-lg-0"
-
-		action="/publicacion/publicaciones" method="GET">
+	 <form class="form-inline my-2 my-lg-0" action="/publicacion/publicaciones" method="GET">
+		
 		<input class="form-control mr-sm-2" type="search" placeholder="Buscar"
 			aria-label="Buscar" name="q" th:value="${q}">
-		<button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-			Buscar <i class="fa fa-search"></i>
-		</button>
+		<button class="btn btn-outline-success my-2 my-sm-0" type="submit"> Buscar <i class="fa fa-search"></i>
+	    </button>
 	</form>
 
 	<section class="vip-products">
