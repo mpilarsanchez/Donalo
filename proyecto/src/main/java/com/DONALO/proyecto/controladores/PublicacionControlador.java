@@ -31,152 +31,124 @@ import com.DONALO.proyecto.servicios.MensajesServicio;
 import com.DONALO.proyecto.servicios.PublicacionServicio;
 import com.DONALO.proyecto.servicios.UsuarioServicio;
 
-
 @Controller
 @RequestMapping("/publicacion")
 public class PublicacionControlador {
 
-	
-	
 	private String id;
-	
+
 	private Publicacion publicacion;
-	
-	
+
 	@Autowired
 	MensajesServicio servicio;
-	
-	
+
 	@Autowired
 	PublicacionRepositorio publicacionRepositorio;
-	
-	
+
 	@Autowired
 	PublicacionServicio publicacionServicio;
-	
+
 	@Autowired
 	UsuarioServicio usuarioServicio;
-	
+
 	@Autowired
 	UsuarioRepositorio usuarioRepositorio;
-	
+
 	@Autowired
 	FotoServicio fotoServicio;
-	
+
 	@Autowired
 	MensajeRepositorio mensajerepo;
-	
-	
+
 	@PreAuthorize("hasAnyRole('ROLE_USUARIO_REGISTRADO')")
 	@GetMapping("/crear")
-    public String crear(){
-        
-        return "crear_publicacion.html";
-    }
-	
-	
-	
+	public String crear() {
+
+		return "crear_publicacion.html";
+	}
+
 	@PreAuthorize("hasAnyRole('ROLE_USUARIO_REGISTRADO')")
 	@PostMapping("/publicar")
-	 public String publicar(ModelMap modelo, @RequestParam String titulo,@RequestParam String descripcion, MultipartFile archivo, @RequestParam String seleccion) throws ErrorServicio  {
-      Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-      Usuario usuario = usuarioRepositorio.buscarPorMail(auth.getName());
-		
+	public String publicar(ModelMap modelo, @RequestParam String titulo, @RequestParam String descripcion,
+			MultipartFile archivo, @RequestParam String seleccion) throws ErrorServicio {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		Usuario usuario = usuarioRepositorio.buscarPorMail(auth.getName());
+		Publicacion publicacion = new Publicacion();
 		try {
-			publicacionServicio.altaPublicacion(titulo,descripcion, usuario, archivo, seleccion);
+			publicacion = publicacionServicio.altaPublicacion(titulo, descripcion, usuario, archivo, seleccion);
 		} catch (Exception ex) {
 			modelo.put("error", ex.getMessage());
 			modelo.put("titulo", titulo);
-	        modelo.put("descripcion", descripcion);
-	        
-			//return "redirect:/publicacion/crear?id=" + id + "&error=" + ex.getMessage();
-		 return "crear_publicacion.html";
+			modelo.put("descripcion", descripcion);
+
+			// return "redirect:/publicacion/crear?id=" + id + "&error=" + ex.getMessage();
+			return "crear_publicacion.html";
 		}
 		modelo.put("titulo", titulo);
-        modelo.put("descripcion", descripcion);
-		return "redirect:/publicacion/publicaciones";
-	}
-	
-	
-	@GetMapping("/detalle")
-    public String publicacion(@RequestParam String id, @RequestParam(required = false) String error, ModelMap modelo) {
-			
-		  this.publicacion = publicacionServicio.buscarPublicacionId(id);
-			 
-		     
-		     
-		     
-			 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		      Usuario usuario = usuarioRepositorio.buscarPorMail(auth.getName());
-		         
-		        
-		        modelo.put("publicacion", publicacion);
-		        modelo.put("usuario", usuario);
-		        modelo.put("error", error);
-          
-        
-		   		
-		       	this.id=publicacion.getUsuario().getId();	
-		        
-		        
-		        return "publicacion.html";
-		        
-		
-		        
-		        
-		        
-	}
-    
-    
+		modelo.put("descripcion", descripcion);
 
+		return "redirect:/publicacion/detalle?id=" + publicacion.getId();
+
+	}
+
+	@GetMapping("/detalle")
+	public String publicacion(@RequestParam String id, @RequestParam(required = false) String error, ModelMap modelo) {
+
+		this.publicacion = publicacionServicio.buscarPublicacionId(id);
+
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		Usuario usuario = usuarioRepositorio.buscarPorMail(auth.getName());
+
+		modelo.put("publicacion", publicacion);
+		modelo.put("usuario", usuario);
+		modelo.put("error", error);
+
+		this.id = publicacion.getUsuario().getId();
+
+		return "publicacion.html";
+
+	}
 
 	@GetMapping("/mensaje")
-	public String mensaje(ModelMap modelo ) {
+	public String mensaje(ModelMap modelo) {
 
-		
 		return "mensaje.html";
-		
-		
-		
-		
-		
-		
-	}
-	
-	
-	@GetMapping("/publicaciones")
-	public String publicaciones(@RequestParam(required = false) String q, @RequestParam(required = false) String error, ModelMap modelo) {
-			
-		     List<Publicacion> publicaciones ;
-			 
-			 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		      Usuario usuario = usuarioRepositorio.buscarPorMail(auth.getName());
-		      
-			 if (q != null) {
-		            publicaciones = publicacionServicio.buscarPublicacion(q);
-		        } else {
-		        	publicaciones = publicacionServicio.buscarPublicacion();
-		        }
-		        
-		        modelo.put("q", q);
-		        modelo.put("publicaciones", publicaciones);
-		        modelo.put("usuario", usuario);
-		        modelo.put("error", error);
-           
-		        return "publicaciones.html";
+
 	}
 
-	
+	@GetMapping("/publicaciones")
+	public String publicaciones(@RequestParam(required = false) String q, @RequestParam(required = false) String error,
+			ModelMap modelo) {
+
+		List<Publicacion> publicaciones;
+
+//		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+//		Usuario usuario = usuarioRepositorio.buscarPorMail(auth.getName());
+
+		if (q != null) {
+			publicaciones = publicacionServicio.buscarPublicacion(q);
+		} else {
+			publicaciones = publicacionServicio.buscarPublicacion();
+		}
+
+		modelo.put("q", q);
+		modelo.put("publicaciones", publicaciones);
+		//modelo.put("usuario", usuario);
+		modelo.put("error", error);
+
+		return "publicaciones.html";
+	}
+
 	@GetMapping("/misPublicaciones")
 	public String misPublicaciones(@RequestParam(required = false) String error, ModelMap modelo) {
 
-		 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-	      Usuario usuario = usuarioRepositorio.buscarPorMail(auth.getName());	 
-		  
-	      List<Publicacion> publicaciones = publicacionServicio.buscarPublicacionPorUsuario(usuario.getId());
-	      modelo.put("publicaciones", publicaciones);
-          modelo.put("error", error);
-	      
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		Usuario usuario = usuarioRepositorio.buscarPorMail(auth.getName());
+
+		List<Publicacion> publicaciones = publicacionServicio.buscarPublicacionPorUsuario(usuario.getId());
+		modelo.put("publicaciones", publicaciones);
+		modelo.put("error", error);
+
 //	      if ( publicaciones != null) {
 //	    	   modelo.put("publicaciones", publicaciones);
 //		        modelo.put("error", error);
@@ -185,44 +157,26 @@ public class PublicacionControlador {
 //		        	System.out.println("Aun no tiene ninguna publicación");
 //		        }
 //		       
-             return "publicaciones_usuario.html";
+		return "publicaciones_usuario.html";
 	}
 
+	@PostMapping("/mensaje/enviar")
+	public String enviar(ModelMap modelo, @RequestParam String contenido) throws ErrorServicio {
 
+		System.out.println("la paraste de pecho colorado");
 
+		Date fecha = new Date();
 
-@PostMapping("/mensaje/enviar")
-public String enviar (ModelMap modelo, @RequestParam String contenido) throws ErrorServicio{
-	
-	System.out.println("la paraste de pecho colorado");
-	
-	
-	Date fecha= new Date();
-	
-	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-    Usuario usuario = usuarioRepositorio.buscarPorMail(auth.getName());
-	
-    Usuario usuario2= usuarioRepositorio.findById(this.id).get();
-    
-    
-    String idp= publicacion.getId();
-	
-	servicio.mensaje(idp,usuario.getId(),usuario2.getId(), contenido, fecha);
-	
-	
-	
-	
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		Usuario usuario = usuarioRepositorio.buscarPorMail(auth.getName());
 
- return "redirect:/publicacion/mensaje";
-	
-	
+		Usuario usuario2 = usuarioRepositorio.findById(this.id).get();
 
+		String idp = publicacion.getId();
 
+		servicio.mensaje(idp, usuario.getId(), usuario2.getId(), contenido, fecha);
 
+		return "redirect:/publicacion/mensaje";
 
-
-
+	}
 }
-}
-
-
