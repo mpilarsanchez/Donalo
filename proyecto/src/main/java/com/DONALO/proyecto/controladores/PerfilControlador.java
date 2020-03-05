@@ -27,19 +27,19 @@ private UsuarioRepositorio repo;
 @Autowired MensajeRepositorio repo1;
 
 	
-@PreAuthorize("hasAnyRole('ROLE_USUARIO_REGISTRADO')")
+//@PreAuthorize("hasAnyRole('ROLE_USUARIO_REGISTRADO')")
 @GetMapping("/perfil")
 public String perfil(ModelMap model) {	 
 	
 
 	 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-      Usuario usuario = repo.buscarPorMail(auth.getName());
+      Usuario usuario =  repo.buscarPorMail(auth.getName());
 	
       model.put("usuario", usuario);
-		model.put("nombre", usuario.getNombre());
-		model.put("apellido", usuario.getApellido());
-		model.put("mail", usuario.getMail());
-		model.put("foto", usuario.getFoto());
+//		model.put("nombre", usuario.getNombre());
+//		model.put("apellido", usuario.getApellido());
+//		model.put("mail", usuario.getMail());
+//		model.put("foto", usuario.getFoto());
 		
 	return "perfil.html";
 	
