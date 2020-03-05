@@ -52,8 +52,9 @@ public class RegistroControlador {
 
 		modelo.put("titulo", "Bienvenido a Donalo!!.");
 		modelo.put("descripcion", "Tu usuario fue registrado de manera satisfactoria");
-
-		return "redirect:/perfil?id=" + nuevoUsuario.getId();
+//
+//		return "redirect:/perfil?id=" + nuevoUsuario.getId();
+		return "/inicio";
 	}
 
 }

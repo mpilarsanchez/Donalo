@@ -12,20 +12,6 @@
 <link rel="stylesheet" type="text/css" href="/css/home.css">
 <link rel="shortcut icon" href="https://i.ibb.co/3Yn1Q9X/favicon.png" type="image/png">
 
-<style>
-/* Este es para los elementos en general */
-.navbar-light .navbar-nav .nav-link {
-color:#b71c1c;
-font: Montserrat 150%;
-
-}
-/*  Este es para el elemento activo lo puedes omitir */
-.navbar-light .navbar-nav .active>.nav-link  {
-color:#b71c1c;
-font: Montserrat 150%;
-}
-</style>
-
 </head>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -40,10 +26,17 @@ font: Montserrat 150%;
 	
 	<div class="collapse navbar-collapse" id="navbarNavDropdown">		
 		<ul class="navbar-nav" ml-auto mt-lg-0>
+		<li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> </a>      
+        			<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+        				<a class="dropdown-item" href="/logout"; style=color:#b71c1c;>Cerrar sesión</a>
+                    </div>
+      			</li>
+		<li class="nav-item"><a class="nav-link" href="/publicacion/publicaciones">Publicaciones</a>
+			</li>
 			<li class="nav-item"><a class="nav-link" href="/">Home</a>
 			</li>
-			<li class="nav-item"><a class="nav-link" href="/login">LogIn</a>
-		    </li>
+			
 		</ul>
 	</div>
 </nav>
@@ -63,22 +56,22 @@ font: Montserrat 150%;
 						<form action="/registro/registrar" method="POST" enctype="multipart/form-data">
 							<p th:if="${error != null}" th:text="${error}" style="color: red;"></p>
 						
-							<label style=color:#b71c1c;>Nombre</label> 
+							<label >Nombre</label> 
 							<input type="text" class="form-control" name="nombre" th:value="${nombre}" /> <br/> 
 							
-							<label style=color:#b71c1c;>Apellido</label>
+							<label >Apellido</label>
 							<input type="text" class="form-control" name="apellido"	th:value="${apellido}" /> <br/> 
 							
-							<label style=color:#b71c1c;>E-Mail</label> 
+							<label >E-Mail</label> 
 							<input type="email" class="form-control" name="mail" th:value="${mail}" /><br/> 
 							
-							<label style=color:#b71c1c;>Foto</label> 
+							<label >Foto</label> 
 							<input type="file"class="form-control" name="archivo" /> <br /> 
 							
-							<label style=color:#b71c1c;>Clave</label>
+							<label >Clave</label>
 							<input type="password" class="form-control" name="clave1" th:value="${clave1}" /><br/> 
 							
-							<label style=color:#b71c1c;>Repetir Clave</label> 
+							<label>Repetir Clave</label> 
 							<input type="password" class="form-control" name="clave2"th:value="${clave2}" /><br/>
 							
 							<button type="submit" class="btn btn-primary" >Registrarme</button>

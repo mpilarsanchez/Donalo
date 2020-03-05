@@ -13,20 +13,6 @@
     <link rel="stylesheet" type="text/css" href="/css/home.css">
     <link rel="shortcut icon" 
     href="https://i.ibb.co/3Yn1Q9X/favicon.png" type="image/png">
-    
-<style>
-/* Este es para los elementos en general */
-.navbar-light .navbar-nav .nav-link {
-color:#b71c1c;
-font: Montserrat 150%;
-
-}
-/*  Este es para el elemento activo lo puedes omitir */
-.navbar-light .navbar-nav .active>.nav-link  {
-color:#b71c1c;
-font: Montserrat 150%;
-}
-</style>
  
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <img class="navbar-brand" src="https://fotos.subefotos.com/987390e9e8bcebd33c8a39765a9f637co.png">
@@ -65,27 +51,27 @@ font: Montserrat 150%;
         </div>
        <div class="col-lg-6 order-lg-1">
           <div class="p-5">
-            <h2 class="display-4" style=color:#B71C1C;>Crear tu publicación!</h2>
+            <h2 class="display-4">Crear tu publicación!</h2>
             
 	<form action="/publicacion/publicar" method="POST" enctype="multipart/form-data">
 		   <p th:if="${error != null}" th:text="${error}" style="color: red;"></p>
 			
-		   <label style=color:#B71C1C;>Titulo</label>
+		   <label>Titulo</label>
 		   <input type="text" class="form-control" name="titulo" th:value="${titulo}" />  <br />
 		
-		   <label style=color:#B71C1C;>Descripcion</label>	 
+		   <label>Descripcion</label>	 
 		   <textarea rows="" cols="" style="margin: 0px; height: 67px; width: 448px;"  name="descripcion" th:value="${descripcion}"></textarea><br/>
 		
-		    <label style=color:#B71C1C;>Foto</label>
+		    <label >Foto</label>
 		    <input type="file" class="form-control" name="archivo" />  <br />
 		
-		    <p style=color:#B71C1C;>Selecciona si tu publicacion es:</p>
+		    <p >Selecciona si tu publicacion es:</p>
 			<div>
 			    <input type="radio" id="contactChoice1" name="seleccion" value="DONAR">
-			    <label for="contactChoice1" style=color:#B71C1C;>Para Donar</label>
+			    <label for="contactChoice1" >Para Donar</label>
 			
 			    <input type="radio" id="contactChoice2" name="seleccion" value="RECIBIR">
-			    <label for="contactChoice2" style=color:#B71C1C;>Para Solicitar</label>
+			    <label for="contactChoice2">Para Solicitar</label>
 			 </div>
 		
 		     <button type="submit" class="btn btn-primary2">Publicar</button>
