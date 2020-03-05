@@ -1,10 +1,12 @@
 package com.DONALO.proyecto.entidades;
 
 import java.util.Date;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -14,22 +16,27 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity
 public class Usuario {
 	 @Id
-	    @GeneratedValue(generator = "uuid")
-	    @GenericGenerator(name = "uuid", strategy = "uuid2")
-	    private String id; 
-	    private String nombre;
-	    private String apellido;
-	    private String mail; 
-	    private String clave; 
+	 @GeneratedValue(generator = "uuid")
+	 @GenericGenerator(name = "uuid", strategy = "uuid2")
+	 private String id; 
+	 private String nombre;
+	 private String apellido;
+	 private String mail; 
+	 private String clave; 
+//	 private String username;
+	
+	
+
+	@ManyToMany
+	    private Set<Roles> roles;
 	    
+	 @OneToOne
+	 private Foto foto;
 	    
-	    @OneToOne
-	    private Foto foto;
-	    
-	    //@Temporal(TemporalType.TIMESTAMP)
+	    @Temporal(TemporalType.TIMESTAMP)
 	    private Date alta;
 
-	   // @Temporal(TemporalType.TIMESTAMP)
+	    @Temporal(TemporalType.TIMESTAMP)
 	    private Date baja; 
 
 	    public Foto getFoto() {
@@ -139,5 +146,15 @@ public class Usuario {
 	        this.baja = baja;
 	    }
 
+	    public Set<Roles> getRoles() {
+			return roles;
+		}
+
+		public void setRoles(Set<Roles> roles) {
+			this.roles = roles;
+		}
+    
+	
 		
+	    	   
 }
