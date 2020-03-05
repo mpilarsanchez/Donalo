@@ -80,10 +80,10 @@ font: Montserrat 150%;
     </div> 
     
   </div>
-<form method="POST" action="index.html">
+<form method="POST" action="mensaje/enviar">
 <!--     <input type="text" name="nombre" placeholder="Ingresa tu nombre"> -->
  <!--  <input type="text" name="nombre" placeholder="Ingresa tu nombre"> -->  
-    <textarea name="mensaje" placeholder="Ingresa tu mensaje"></textarea>
+    <textarea th:value="${contenido}" name="contenido" placeholder="Ingresa tu mensaje"></textarea>
     <input type="submit" name="enviar" value="Enviar">
 </form>
 
