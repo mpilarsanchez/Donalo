@@ -29,7 +29,7 @@ public class PerfilControlador {
 	@Autowired
 	MensajeRepositorio repo1;
 
-//@PreAuthorize("hasAnyRole('ROLE_USUARIO_REGISTRADO')")
+@PreAuthorize("hasAnyRole('ROLE_USUARIO_REGISTRADO')")
 	@GetMapping("/perfil")
 	public String perfil(ModelMap model) {
 

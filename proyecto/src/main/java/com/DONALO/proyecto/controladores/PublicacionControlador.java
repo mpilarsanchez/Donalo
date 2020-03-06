@@ -26,119 +26,106 @@ import com.DONALO.proyecto.servicios.FotoServicio;
 import com.DONALO.proyecto.servicios.PublicacionServicio;
 import com.DONALO.proyecto.servicios.UsuarioServicio;
 
-
 @Controller
 @RequestMapping("/publicacion")
 public class PublicacionControlador {
 
 	@Autowired
 	PublicacionServicio publicacionServicio;
-	
+
 	@Autowired
 	UsuarioServicio usuarioServicio;
-	
+
 	@Autowired
 	UsuarioRepositorio usuarioRepositorio;
-	
+
 	@Autowired
 	FotoServicio fotoServicio;
-	
-	
-	
+
 	@PreAuthorize("hasAnyRole('ROLE_USUARIO_REGISTRADO')")
 	@GetMapping("/crear")
-    public String crear(){
-        
-        return "crear_publicacion.html";
-    }
-	
-	
-	
+	public String crear() {
+
+		return "crear_publicacion.html";
+	}
+
 	@PreAuthorize("hasAnyRole('ROLE_USUARIO_REGISTRADO')")
 	@PostMapping("/publicar")
-	 public String publicar(ModelMap modelo, @RequestParam String titulo,@RequestParam String descripcion, MultipartFile archivo, @RequestParam String seleccion) throws ErrorServicio  {
-      Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-      Usuario usuario = usuarioRepositorio.buscarPorMail(auth.getName());
-		
+	public String publicar(ModelMap modelo, @RequestParam String titulo, @RequestParam String descripcion,
+			MultipartFile archivo, @RequestParam String seleccion) throws ErrorServicio {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		Usuario usuario = usuarioRepositorio.buscarPorMail(auth.getName());
+
 		try {
-			publicacionServicio.altaPublicacion(titulo,descripcion, usuario, archivo, seleccion);
+			publicacionServicio.altaPublicacion(titulo, descripcion, usuario, archivo, seleccion);
 		} catch (Exception ex) {
 			modelo.put("error", ex.getMessage());
 			modelo.put("titulo", titulo);
-	        modelo.put("descripcion", descripcion);
-	        
-			//return "redirect:/publicacion/crear?id=" + id + "&error=" + ex.getMessage();
-		 return "crear_publicacion.html";
+			modelo.put("descripcion", descripcion);
+
+			// return "redirect:/publicacion/crear?id=" + id + "&error=" + ex.getMessage();
+			return "crear_publicacion.html";
 		}
 		modelo.put("titulo", titulo);
-        modelo.put("descripcion", descripcion);
+		modelo.put("descripcion", descripcion);
 
 		return "redirect:/publicacion/misPublicaciones";
 	}
-	
-	
+
 	@GetMapping("/detalle")
-    public String publicacion(@RequestParam String id, @RequestParam(required = false) String error, ModelMap modelo) {
-			
-		     Publicacion publicacion = publicacionServicio.buscarPublicacionId(id);
-			 
-			 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		      Usuario usuario = usuarioRepositorio.buscarPorMail(auth.getName());
-		         
-		        
-		        modelo.put("publicacion", publicacion);
-		        modelo.put("usuario", usuario);
-		        modelo.put("error", error);
-          
-		        return "publicacion.html";
-	}
-    
-    
+	public String publicacion(@RequestParam String id, @RequestParam(required = false) String error, ModelMap modelo) {
 
-
-	@GetMapping("/mensaje")
-	public String mensaje(ModelMap modelo ) {
-		
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-	      Usuario usuario = usuarioRepositorio.buscarPorMail(auth.getName());
-	    modelo.put("usuario", usuario);
-		
-		return "mensaje.html";
-	}
-	
-	
-	@GetMapping("/publicaciones")
-	public String publicaciones(@RequestParam(required = false) String q, @RequestParam(required = false) String error, ModelMap modelo) {
-			
-		     List<Publicacion> publicaciones ;
-			 
-			 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		      Usuario usuario = usuarioRepositorio.buscarPorMail(auth.getName());
-		      
-			 if (q != null) {
-		            publicaciones = publicacionServicio.buscarPublicacion(q);
-		        } else {
-		        	publicaciones = publicacionServicio.buscarPublicacion();
-		        }
-		        
-		        modelo.put("q", q);
-		        modelo.put("publicaciones", publicaciones);
-		        modelo.put("usuario", usuario);
-		        modelo.put("error", error);
-           
-		        return "publicaciones.html";
-	}
-
-	
-	@GetMapping("/misPublicaciones")
-	public String misPublicaciones(@RequestParam(required = false) String error, ModelMap modelo) {
-
-
-	      
+		Publicacion publicacion = publicacionServicio.buscarPublicacionId(id);
 
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		Usuario usuario = usuarioRepositorio.buscarPorMail(auth.getName());
 
+		modelo.put("publicacion", publicacion);
+		modelo.put("usuario", usuario);
+		modelo.put("error", error);
+
+		return "publicacion.html";
+	}
+
+	@PreAuthorize("hasAnyRole('ROLE_USUARIO_REGISTRADO')")
+	@GetMapping("/mensaje")
+	public String mensaje(ModelMap modelo) {
+
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		Usuario usuario = usuarioRepositorio.buscarPorMail(auth.getName());
+		modelo.put("usuario", usuario);
+
+		return "mensaje.html";
+	}
+
+	@GetMapping("/publicaciones")
+	public String publicaciones(@RequestParam(required = false) String q, @RequestParam(required = false) String error,
+			ModelMap modelo) {
+
+		List<Publicacion> publicaciones;
+
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		Usuario usuario = usuarioRepositorio.buscarPorMail(auth.getName());
+
+		if (q != null) {
+			publicaciones = publicacionServicio.buscarPublicacion(q);
+		} else {
+			publicaciones = publicacionServicio.buscarPublicacion();
+		}
+
+		modelo.put("q", q);
+		modelo.put("publicaciones", publicaciones);
+		modelo.put("usuario", usuario);
+		modelo.put("error", error);
+
+		return "publicaciones.html";
+	}
+
+	@GetMapping("/misPublicaciones")
+	public String misPublicaciones(@RequestParam(required = false) String error, ModelMap modelo) {
+
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		Usuario usuario = usuarioRepositorio.buscarPorMail(auth.getName());
 
 		List<Publicacion> publicacionesp = publicacionServicio.buscarPublicacionPorUsuario(usuario);
 		modelo.put("publicacionesp", publicacionesp);
@@ -152,8 +139,6 @@ public class PublicacionControlador {
 //		        	System.out.println("Aun no tiene ninguna publicación");
 //		        }
 //		       
-             return "publicaciones_usuario.html";
+		return "publicaciones_usuario.html";
 	}
 }
-
-
