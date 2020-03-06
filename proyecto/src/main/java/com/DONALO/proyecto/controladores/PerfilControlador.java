@@ -1,8 +1,10 @@
 package com.DONALO.proyecto.controladores;
 
-
+import java.io.File;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -15,8 +17,11 @@ import com.DONALO.proyecto.entidades.Usuario;
 import com.DONALO.proyecto.repositorios.MensajeRepositorio;
 import com.DONALO.proyecto.repositorios.UsuarioRepositorio;
 
+
 @Controller
 public class PerfilControlador {
+
+
 
 	@Autowired
 	private UsuarioRepositorio repo;
@@ -32,7 +37,7 @@ public class PerfilControlador {
 		Usuario usuario = repo.buscarPorMail(auth.getName());
 
 		Foto foto = usuario.getFoto();
-
+		model.put("usuario", usuario);
 		byte[] contenido = foto.getContenido();
 
 		if (contenido.length <= 0) {
@@ -41,13 +46,13 @@ public class PerfilControlador {
 
 		}
 
-		if (contenido.length < 0) {
+		if (contenido.length > 0) {
 
 			model.put("esnulo", "no");
 
 		}
 
-		model.put("usuario", usuario);
+		
 
 		return "perfil.html";
 
@@ -71,6 +76,6 @@ public class PerfilControlador {
 
 		return "mismensajes.html";
 
-	}
 
+}
 }
