@@ -1,10 +1,7 @@
 package com.DONALO.proyecto.controladores;
 
+import java.util.Date;
 import java.util.List;
-import java.util.Optional;
-
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -12,7 +9,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,8 +17,11 @@ import org.springframework.web.multipart.MultipartFile;
 import com.DONALO.proyecto.entidades.Publicacion;
 import com.DONALO.proyecto.entidades.Usuario;
 import com.DONALO.proyecto.errores.ErrorServicio;
+import com.DONALO.proyecto.repositorios.MensajeRepositorio;
+import com.DONALO.proyecto.repositorios.PublicacionRepositorio;
 import com.DONALO.proyecto.repositorios.UsuarioRepositorio;
 import com.DONALO.proyecto.servicios.FotoServicio;
+import com.DONALO.proyecto.servicios.MensajesServicio;
 import com.DONALO.proyecto.servicios.PublicacionServicio;
 import com.DONALO.proyecto.servicios.UsuarioServicio;
 
@@ -30,6 +29,20 @@ import com.DONALO.proyecto.servicios.UsuarioServicio;
 @RequestMapping("/publicacion")
 public class PublicacionControlador {
 
+	
+    private String id;
+	
+	private Publicacion publicacion;
+	
+	
+	@Autowired
+	MensajesServicio servicio;
+	
+	
+	@Autowired
+	PublicacionRepositorio publicacionRepositorio;
+	
+	
 	@Autowired
 	PublicacionServicio publicacionServicio;
 
@@ -41,6 +54,9 @@ public class PublicacionControlador {
 
 	@Autowired
 	FotoServicio fotoServicio;
+	
+	@Autowired
+	MensajeRepositorio mensajerepo;
 
 	@PreAuthorize("hasAnyRole('ROLE_USUARIO_REGISTRADO')")
 	@GetMapping("/crear")
@@ -75,7 +91,8 @@ public class PublicacionControlador {
 	@GetMapping("/detalle")
 	public String publicacion(@RequestParam String id, @RequestParam(required = false) String error, ModelMap modelo) {
 
-		Publicacion publicacion = publicacionServicio.buscarPublicacionId(id);
+		//Publicacion publicacion = publicacionServicio.buscarPublicacionId(id);
+		this.publicacion = publicacionServicio.buscarPublicacionId(id);
 
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		Usuario usuario = usuarioRepositorio.buscarPorMail(auth.getName());
@@ -83,6 +100,11 @@ public class PublicacionControlador {
 		modelo.put("publicacion", publicacion);
 		modelo.put("usuario", usuario);
 		modelo.put("error", error);
+		
+
+   		
+       	this.id=publicacion.getUsuario().getId();	
+        
 
 		return "publicacion.html";
 	}
@@ -140,5 +162,29 @@ public class PublicacionControlador {
 //		        }
 //		       
 		return "publicaciones_usuario.html";
+	}
+	
+	@PostMapping("/mensaje/enviar")
+	public String enviar (ModelMap modelo, @RequestParam String contenido) throws ErrorServicio{
+		
+		System.out.println("la paraste de pecho colorado");
+		
+		
+		Date fecha= new Date();
+		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    Usuario usuario = usuarioRepositorio.buscarPorMail(auth.getName());
+		
+	    Usuario usuario2= usuarioRepositorio.findById(this.id).get();
+	    
+	    
+	    String idp= publicacion.getId();
+		
+		servicio.mensaje(idp,usuario.getId(),usuario2.getId(), contenido, fecha);
+		
+		
+	 return "redirect:/publicacion/mensaje";
+		
+	
 	}
 }
