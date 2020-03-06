@@ -80,8 +80,8 @@ public class PublicacionServicio {
 	}
 
 	@Transactional
-	public List<Publicacion> buscarPublicacionPorUsuario(String usuario_id) {
-		List<Publicacion> publicaciones = publicacionRepositorio.findByUsuario(usuario_id);
+	public List<Publicacion> buscarPublicacionPorUsuario(Usuario usuario) {
+		List<Publicacion> publicaciones = publicacionRepositorio.findByUsuario(usuario);
 		return publicaciones;
 	}
 	
